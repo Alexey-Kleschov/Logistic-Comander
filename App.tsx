@@ -1,21 +1,9 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import ScanerScrean from './components/scaner/ScanerScrean'; 
+
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, Button  } from 'react-native';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <ScanerScrean />
-    </View>
-  );
-}
+  return <Text>Start screen</Text>;
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
