@@ -1,10 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Button  } from 'react-native';
+import React from 'react';
+import MainScreen from './screens/MainScreen';
 
 export default function App() {
-  return <Text>Start screen</Text>;
+  return <MainScreen />;
 };
-
-
-
-
