@@ -1,8 +1,11 @@
-
 import React from 'react';
-import MainScreen from './screens/MainScreen';
+import store from './store';
+import {Provider} from 'react-redux';
+import Routing from './src/routing/SecurityRoute';
 
 export default function App() {
-  return <MainScreen />;
+  return (<Provider store={store}>
+      <Routing/>
+  </Provider>)
 };
 
