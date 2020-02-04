@@ -1,12 +1,13 @@
-import React from 'react-native'
-import {Modal, Text, TouchableHighlight, View, Alert} from 'react-native'
+import React, {Component} from 'react'
+import {Modal, TouchableHighlight, View, Alert} from 'react-native'
+import {Overlay, Text} from 'react-native-elements'
 import ScanBlank from './ScanBlank'
 
 /*
 *    This component represents scan result data
 *    about ttn blanks
 */
-class ScanResponceContainer extends React.Component {
+class ScanResponceContainer extends Component {
     state = {
         modalVisible: true,
     };
@@ -25,8 +26,7 @@ class ScanResponceContainer extends React.Component {
                     onRequestClose={() => {
                         Alert.alert('Modal has been closed.');
                     }}>
-                >
-                    <ScanBlank />
+                    <ScanBlank/>
                     <TouchableHighlight
                         onPress={() => {
                             this.setModalVisible(!this.state.modalVisible);

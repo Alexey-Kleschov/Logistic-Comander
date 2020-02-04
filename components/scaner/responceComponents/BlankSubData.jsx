@@ -1,13 +1,14 @@
 import React from 'react'
-import { ListItem } from 'react-native-elements'
+import {ListItem} from 'react-native-elements'
 
-const BlankSubData = (props) => {
-    const subData = [...props]
+const BlankSubData = ({number, carNumber, ownerInfo, warehouseLicense, service}) => {
     const titles = [
         'TTN number:', 'Driver car number:', 'Owner:', 'Warehouse license:', 'From service:'
     ]
-
-    return subData.map((unit, index) => {
+    const items = [
+        number, carNumber, ownerInfo, warehouseLicense, service
+    ]
+    return items.map((unit, index) => {
         return (
             <ListItem
                 key={index}

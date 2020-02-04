@@ -5,8 +5,9 @@ import LoginPage from '../../components/LoginPage';
 
 class SecurityRoute extends Component {
     render() {
-        return (<>
-            {this.props.auth.isAuthenticated ? <Navigation/>:<LoginPage/>}
+        return (
+            <>
+                {!this.props.auth.isAuthenticated ? <Navigation/> : <LoginPage/>}
             </>
         )
     }
