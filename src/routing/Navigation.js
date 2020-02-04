@@ -1,12 +1,11 @@
-import React, {Component} from 'react';
-import Scanner from '../../screens/ScannerScreen';
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
-
+import React from 'react';
+import {createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
+import HomeScreen from "../../components/HomeScreen";
 
 const AppNavigator = createStackNavigator({
     Home: {
-        screen: Scanner,
+        screen: HomeScreen,
     },
 });
 

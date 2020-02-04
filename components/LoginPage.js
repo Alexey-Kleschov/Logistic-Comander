@@ -99,10 +99,10 @@ const styles = StyleSheet.create({
         marginTop: '10%',
     },
     input: {
-      marginTop: '10%',
+      marginTop: '8%',
     },
     inputStyle: {
-        marginLeft:'7%',
+        marginLeft:'8%',
         color:'white',
     },
     label:{
