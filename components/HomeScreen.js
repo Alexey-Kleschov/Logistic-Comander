@@ -5,7 +5,7 @@ import {StyleSheet, View} from "react-native";
 
 class HomeScreen extends Component {
     static navigationOptions = {
-        header:<Header title='HOME PAGE'/>
+        header: () => <Header title='HOME PAGE'/>
     };
 
     render() {
@@ -18,7 +18,6 @@ class HomeScreen extends Component {
                             overlayContainerStyle={{backgroundColor: '#005031'}}
                             size="large"
                             rounded
-                            onPress={() => console.log("Works!")}
                             activeOpacity={0.7}
                         />
                         <Avatar
@@ -27,37 +26,35 @@ class HomeScreen extends Component {
                             size="large"
                             rounded
                             placeholder={'awdawddwadawd'}
-                            onPress={() => console.log("Works!")}
                             activeOpacity={0.7}
                         />
                     </View>
                     <View style={styles.centerContainer}>
-                    <Avatar
-                        icon={{name: 'camera-retro', type: 'font-awesome',color:'#f5f5f5'}}
-                        overlayContainerStyle={{backgroundColor: '#292f45'}}
-                        size="xlarge"
-                        rounded
-                        onPress={() => console.log("Works!")}
-                        activeOpacity={0.7}
-                    />
+                        <Avatar
+                            icon={{name: 'camera-retro', type: 'font-awesome',color:'#f5f5f5'}}
+                            overlayContainerStyle={{backgroundColor: '#292f45'}}
+                            size="xlarge"
+                            rounded
+                            onPress={() => {}}
+                            activeOpacity={0.7}
+                        />
                     </View>
                     <View style={styles.leftRightContainer}>
-                    <Avatar
-                        icon={{name: 'money', type: 'font-awesome',color:'#f5f5f5'}}
-                        overlayContainerStyle={{backgroundColor: '#634806'}}
-                        size="large"
-                        rounded
-                        onPress={() => console.log("Works!")}
-                        activeOpacity={0.7}
-                    />
-                    <Avatar
-                        icon={{name: 'truck', type: 'font-awesome',color:'#f5f5f5'}}
-                        overlayContainerStyle={{backgroundColor: '#205D86'}}
-                        size="large"
-                        rounded
-                        onPress={() => console.log("Works!")}
-                        activeOpacity={0.7}
-                    />
+                        <Avatar
+                            icon={{name: 'money', type: 'font-awesome',color:'#f5f5f5'}}
+                            overlayContainerStyle={{backgroundColor: '#634806'}}
+                            size="large"
+                            rounded
+                            activeOpacity={0.7}
+                        />
+                        <Avatar
+                            icon={{name: 'truck', type: 'font-awesome',color:'#f5f5f5'}}
+                            overlayContainerStyle={{backgroundColor: '#205D86'}}
+                            size="large"
+                            rounded
+                            onPress={() => {}}
+                            activeOpacity={0.7}
+                        />
                     </View>
                 </View>
             </View>
