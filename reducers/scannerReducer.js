@@ -1,17 +1,13 @@
 import { SCANNER } from '../actions/types';
 
-const initialState = {
-    scannerData: []
-};
+const initialState = null
 
 export default function(state = initialState, action) {
-    switch (action.type) {
-      case SCANNER:
-        return {           
-            scannerData: action.payload
-        };
-      default:
-        return state;
-    }
+  switch (action.type) {
+    case SCANNER:
+      return action.payload
+    default:
+      return state;
+  }
 };
   

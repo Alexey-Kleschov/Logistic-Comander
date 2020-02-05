@@ -3,44 +3,12 @@ import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { Table, Row } from 'react-native-table-component';
 import BlankSubData from "./BlankSubData";
 
-const testData = {
-    cargo: [
-        {
-            name: "apples",
-            amount: "4",
-            id: "7876785757",
-            boxing: "box"
-        },
-        {
-            name: "melons",
-            amount: "10",
-            id: "1232334231",
-            boxing: "box"
-        },
-        {
-            name: "pineapples",
-            amount: "30",
-            id: "5656678878",
-            boxing: "box"
-        },
-        {
-            name: "oranges",
-            amount: "5",
-            id: "9770987684",
-            boxing: "box"
-        }
-    ],
-    number: "5555555555",
-    carNumber: "EZ-2454",
-    ownerInfo: "E3423434T56",
-    warehouseLicense: "5555555555",
-    dataOfRegistration: "2020-01-30T09:28:31.320Z",
-    service: "express_cargo",
-};
-
-const ScanBlank = () => {
+const ScanBlank = ({ scanData }) => {
+    const {
+        cargo, number, carNumber, ownerInfo, warehouseLicense, service
+    } = scanData
     const tableHead = ['Name', 'Amount', 'Package type']
-    const __tableRows = testData.cargo.map(({id, name, amount, boxing}) => (
+    const __tableRows = cargo.map(({id, name, amount, boxing}) => (
         <Row 
             data={[name, amount, boxing]} 
             key={id} 
@@ -51,15 +19,15 @@ const ScanBlank = () => {
     return (
         <ScrollView>
             <View style={styles.blankTitleWrapper}>
-                <Text style={styles.blankTitle}>TTN №{testData.number}</Text>
+                <Text style={styles.blankTitle}>TTN №{number}</Text>
             </View>
             <View>
                 <BlankSubData
-                    number={testData.number}
-                    carNumber={testData.carNumber}
-                    ownerInfo={testData.ownerInfo}
-                    warehouseLicense={testData.warehouseLicense}
-                    service={testData.service}
+                    number={number}
+                    carNumber={carNumber}
+                    ownerInfo={ownerInfo}
+                    warehouseLicense={warehouseLicense}
+                    service={service}
                 />
             </View>
             <View style={styles.blankTitleWrapper}>
