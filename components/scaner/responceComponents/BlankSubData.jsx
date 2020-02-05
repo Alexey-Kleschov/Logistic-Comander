@@ -8,6 +8,7 @@ const BlankSubData = ({number, carNumber, ownerInfo, warehouseLicense, service})
     const items = [
         number, carNumber, ownerInfo, warehouseLicense, service
     ]
+    
     return items.map((unit, index) => {
         return (
             <ListItem
