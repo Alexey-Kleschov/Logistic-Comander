@@ -19,7 +19,11 @@ class ScanResponceContainer extends Component {
     render() {
         return (
             <View>
-                <BlankModal children={<ScanBlank/>}/>
+                <BlankModal 
+                    children={<ScanBlank/>}
+                    width="90%"
+                    height="auto"
+                />
             </View>
         )
     }

@@ -3,21 +3,21 @@ import { StyleSheet, TouchableHighlight, View } from 'react-native'
 import { Overlay, Icon } from 'react-native-elements'
 
 // Create a simple blank modal 
-const BlankModal = (props) => {
+const BlankModal = ({ children, width, height }) => {
     const [ isVisible, setModalVisible ] = useState(true)
 
     return (
         <Overlay
             isVisible={isVisible}
-            width="90%"
-            height="auto"
+            width={width}
+            height={height}
         >
             <TouchableHighlight onPress={() => setModalVisible(!isVisible)}>
                 <View style={styles.closeWrapper}>
                     <Icon name="close"/>
                 </View>
             </TouchableHighlight>
-            {props.children}
+            {children}
         </Overlay>
     )
 }
