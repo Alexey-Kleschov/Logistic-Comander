@@ -23,6 +23,7 @@ class ScanResponceContainer extends Component {
                     children={<ScanBlank/>}
                     width="90%"
                     height="auto"
+                    bgColor="#f5f5f5"
                 />
             </View>
         )

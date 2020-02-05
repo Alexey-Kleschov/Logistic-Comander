@@ -1,7 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { Table, Row } from 'react-native-table-component';
-import BlankRows from './BlankRows';
 import BlankSubData from "./BlankSubData";
 
 const testData = {
@@ -41,16 +40,19 @@ const testData = {
 
 const ScanBlank = () => {
     const tableHead = ['Name', 'Amount', 'Package type']
-
+    const __tableRows = testData.cargo.map(({id, name, amount, boxing}) => (
+        <Row 
+            data={[name, amount, boxing]} 
+            key={id} 
+            textStyle={styles.text}
+        />
+    ))
+    
     return (
-        <View>
+        <ScrollView>
             <View style={styles.blankTitleWrapper}>
                 <Text style={styles.blankTitle}>TTN №{testData.number}</Text>
             </View>
-                <Table borderStyle={styles.borderStyle}>
-                    <Row data={tableHead} style={styles.head} textStyle={styles.text}/>
-                    <BlankRows cargo={testData.cargo} textStyle={styles.text}/>
-                </Table>
             <View>
                 <BlankSubData
                     number={testData.number}
@@ -60,7 +62,14 @@ const ScanBlank = () => {
                     service={testData.service}
                 />
             </View>
-        </View>
+            <View style={styles.blankTitleWrapper}>
+                <Text style={styles.cargoListTitle}>Cargo</Text>
+            </View>
+            <Table borderStyle={styles.borderStyle} style={styles.table}>
+                <Row data={tableHead} style={styles.head} textStyle={styles.text}/>
+                {__tableRows}
+            </Table>
+        </ScrollView>
     )
 };
 
@@ -68,21 +77,28 @@ const styles = StyleSheet.create({
     blankTitleWrapper: {
         flex: 1, 
         alignItems: 'center',
-        paddingVertical: 30,
+        marginVertical: 20,
     },
     blankTitle: {
-        fontSize: 24
+        fontSize: 26,
+    },
+    cargoListTitle: {
+        fontSize: 18,
+        marginTop: 10,
     },
     head: {
         height: 40, 
-        backgroundColor: '#f1f8ff'
+        backgroundColor: 'white'
     },
     text: {
-        margin: 6
+        margin: 6,
     },
     borderStyle: {
-        borderWidth: 2, 
-        borderColor: '#c8e1ff'
+        borderWidth: 1, 
+        borderColor: 'black'
+    },
+    table: {
+        zIndex: 1
     },
 });
 
