@@ -4,11 +4,8 @@ import Header from "./Header";
 import {StyleSheet, View} from "react-native";
 
 class HomeScreen extends Component {
-
     static navigationOptions = {
-        header:()=><Header
-            title='HOME PAGE'
-        />
+        header:<Header title='HOME PAGE'/>
     };
 
     render() {
@@ -40,7 +37,7 @@ class HomeScreen extends Component {
                         overlayContainerStyle={{backgroundColor: '#292f45'}}
                         size="xlarge"
                         rounded
-                        onPress={() => this.props.navigation.navigate('Scan')}
+                        onPress={() => this.props.navigation.navigate('ScannerScreen')}
                         activeOpacity={0.7}
                     />
                     </View>
