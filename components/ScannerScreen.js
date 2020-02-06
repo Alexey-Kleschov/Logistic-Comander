@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button  } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { connect } from 'react-redux';
+
 import { scannerAction } from '../actions/scannerAction.js';
-import ScanResponceContainer from '../components/scaner/responceComponents/ScanResponceContainer'
+import ScanResponceContainer from './scaner/responceComponents/ScanResponceContainer';
+import BarcodeService from '../src/services/http/barCode-service';
 
 class ScannerScreen extends Component {
   
