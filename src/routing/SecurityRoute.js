@@ -1,15 +1,20 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import Navigation from './Navigation';
-import LoginPage from '../../components/LoginPage';
+import OperatorNavigation from './operatorRoutes/Navigation';
+import CompanyAdminNavigation from './companyAdminRoutes/Navigation';
+import LoginPage from '../../components/loginPage/LoginPage';
 
 class SecurityRoute extends Component {
+
     render() {
-        return (
-            <>
-                {!this.props.auth.isAuthenticated ? <Navigation/> : <LoginPage/>}
-            </>
-        )
+        if (this.props.auth.isAuthenticated) {
+            switch (this.props.auth.user.role) {
+                case 'employee':
+                    return (<OperatorNavigation/>);
+                case 'companyAdmin':
+                    return (<CompanyAdminNavigation/>)
+            }
+        } else return <LoginPage/>
     }
 }
 
