@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button  } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { connect } from 'react-redux';
-
-import { scannerAction } from '../../actions/scannerAction.js';
-import ScanResponceContainer from './responceComponents/ScanResponceContainer';
 import BarcodeService from '../../src/services/http/barCode-service';
+import { scannerAction, scannerResetAction } from '../actions/scannerAction.js';
+import ScanResponceContainer from '../components/scaner/responceComponents/ScanResponceContainer'
 
 class ScannerScreen extends Component {
   
@@ -47,7 +46,7 @@ class ScannerScreen extends Component {
     if (this.state.hasPermission === null) {
       return <Text>Requesting for camera permission</Text>;
     }
-    if (this.state.hasPermission === false) {
+    if (!this.state.hasPermission) {
       return <Text>No access to camera</Text>;
     }
 
@@ -55,6 +54,7 @@ class ScannerScreen extends Component {
     ? (
       <ScanResponceContainer 
         scanResponce={this.props.scannerData}
+        scannerResetAction={this.props.scannerResetAction}
       />
     )
     : (
@@ -82,7 +82,4 @@ const mapStateToProps = (state) => ({
   token: state.auth.token
 });
 
-export default connect(
-  mapStateToProps,
-  { scannerAction },
-)(ScannerScreen);
+export default connect(mapStateToProps, { scannerAction, scannerResetAction })(ScannerScreen);
