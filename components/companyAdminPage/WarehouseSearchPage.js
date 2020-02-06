@@ -1,17 +1,25 @@
 import React, {Component} from 'react';
-import {Text, Button, Input} from 'react-native-elements';
+import {
+  Container,
+  Text,
+  Button,
+  Form,
+  Item,
+  Input,
+  Label,
+  H1,
+  Content,
+} from 'native-base';
 import {Actions} from 'react-native-router-flux';
 import {connect} from 'react-redux';
 import {getWarehouse} from '../../actions/warehouseActions';
 import Spinner from 'react-native-loading-spinner-overlay';
-import {View} from 'react-native';
-
+import {ImageBackground} from 'react-native';
+import backImage from '../../resources/pexels-photo-2310642.jpeg';
 
 const styles = {
-  mainView: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#292f45',
+  mainContainer: {
+    backgroundColor: '#E6E6E6',
   },
   text: {
     width: '100%',
@@ -37,7 +45,7 @@ const styles = {
     marginLeft: '5%',
   },
   button: {
-    marginTop: '70%',
+    marginTop: '65%',
     width: '83%',
     marginLeft: '8%',
   },
@@ -65,43 +73,53 @@ class WarehouseSearchPage extends Component {
     };
     spinner();
     const nextPage = () => {
-      Actions.warehouseInfoPage();
+      this.props.navigation.navigate('WarehouseInfoPage')
       spinner();
     };
     this.props.getWarehouse(
-      this.state.license,
-      this.props.auth.token,
-      nextPage,
-      spinner,
+        this.state.license,
+        this.props.auth.token,
+        nextPage,
+        spinner,
     );
   };
 
   render() {
     return (
-      <View style={styles.mainView}>
-        <Spinner
-          visible={this.state.spinner}
-          textContent={'Searching...'}
-          animation="fade"
-          size="large"
-          textStyle={styles.spinner}
-        />
-          <Text h3 style={styles.h1}> Search warehouse by license </Text>
-
-              <Input
-                autoFocus={true}
-                autoCorrect={true}
-                style={styles.input}
-                type="email"
-                onChangeText={text => this.setState({license: text})}
-              />
-            {this.props.errors.warehouse && (
-              <Text style={styles.error}>{this.props.errors.warehouse}</Text>
-            )}
-            <Button block success onPress={this.handleSubmit}>
-              <Text>search</Text>
-            </Button>
-      </View>
+        <Container style={styles.mainContainer}>
+          <Spinner
+              visible={this.state.spinner}
+              textContent={'Searching...'}
+              animation="fade"
+              size="large"
+              textStyle={styles.spinner}
+          />
+          <ImageBackground
+              source={backImage}
+              style={{width: '100%', height: '100%'}}>
+            <H1 style={styles.h1}> Search warehouse by license </H1>
+            <Form style={styles.form}>
+              <Item floatingLabel error={this.props.errors.warehouse}>
+                <Label style={styles.label}>License number</Label>
+                <Input
+                    autoFocus={true}
+                    autoCorrect={true}
+                    style={styles.input}
+                    type="email"
+                    onChangeText={text => this.setState({license: text})}
+                />
+              </Item>
+              {this.props.errors.warehouse && (
+                  <Text style={styles.error}>{this.props.errors.warehouse}</Text>
+              )}
+            </Form>
+            <Content style={styles.button}>
+              <Button block success onPress={this.handleSubmit}>
+                <Text>search</Text>
+              </Button>
+            </Content>
+          </ImageBackground>
+        </Container>
     );
   }
 }
@@ -113,6 +131,6 @@ const mapStateToProps = state => ({
 });
 
 export default connect(
-  mapStateToProps,
-  {getWarehouse},
+    mapStateToProps,
+    {getWarehouse},
 )(WarehouseSearchPage);

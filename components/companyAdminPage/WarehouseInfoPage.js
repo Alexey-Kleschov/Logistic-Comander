@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
 class WarehouseInfoPage extends Component {
   handleSetAreaInfo = data => {
     this.props.setProducts(data);
-    Actions.productsInfoPage();
+    this.props.navigation.navigate('ProductsPage')
   };
 
   render() {

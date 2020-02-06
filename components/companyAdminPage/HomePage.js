@@ -21,7 +21,7 @@ class HomeScreen extends Component {
                             overlayContainerStyle={{backgroundColor: '#292f45'}}
                             size="xlarge"
                             rounded
-                            onPress={() => this.props.navigation.navigate('Scan')}
+                            onPress={() => this.props.navigation.navigate('WarehouseSearchPage')}
                             activeOpacity={0.7}
                         />
                     </View>

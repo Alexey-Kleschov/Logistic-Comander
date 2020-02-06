@@ -15,19 +15,23 @@ class Head extends Component {
     };
 
     render() {
-        return <Header
-            leftComponent={<Icon name='arrow-back' color='#f5f5f5'/>}
-            centerComponent={{text: this.props.title, style: {color: '#fff'}}}
-            rightComponent={<Icon name='account-circle' color='#f5f5f5' onPress={this.handleSwitch}/>}
-            backgroundColor='#292f45'
-        >
-            <ProfileMenu
-                user={this.props.auth.user}
-                isVisible={this.state.isVisible}
-                onClose={this.handleSwitch}
-                onLogout={this.props.logoutUser}
-            />
-        </Header>
+        return (
+            <>
+                <Header
+                    leftComponent={<Icon name='arrow-back' color='#f5f5f5'/>}
+                    centerComponent={{text: this.props.title, style: {color: '#fff'}}}
+                    rightComponent={<Icon name='account-circle' color='#f5f5f5' onPress={this.handleSwitch}/>}
+                    backgroundColor='#292f45'
+                >
+                </Header>
+                <ProfileMenu
+                    user={this.props.auth.user}
+                    isVisible={this.state.isVisible}
+                    onClose={this.handleSwitch}
+                    onLogout={this.props.logoutUser}
+                />
+            </>
+        )
     }
 }
 
