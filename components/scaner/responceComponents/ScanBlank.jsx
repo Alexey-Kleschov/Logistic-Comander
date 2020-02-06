@@ -5,12 +5,12 @@ import BlankSubData from "./BlankSubData";
 
 const ScanBlank = ({ scanData }) => {
     const {
-        cargo, number, carNumber, ownerInfo, warehouseLicense, service
+        cargo, id, carNumber, ownerInfo, warehouseLicense, service
     } = scanData
     const tableHead = ['Name', 'Amount', 'Package type']
-    const __tableRows = cargo.map(({id, name, amount, boxing}) => (
+    const __tableRows = cargo.map(({id, name, amount, package}) => (
         <Row 
-            data={[name, amount, boxing]} 
+            data={[name, amount, package]} 
             key={id} 
             textStyle={styles.text}
         />
@@ -23,7 +23,7 @@ const ScanBlank = ({ scanData }) => {
             </View>
             <View>
                 <BlankSubData
-                    number={number}
+                    number={id}
                     carNumber={carNumber}
                     ownerInfo={ownerInfo}
                     warehouseLicense={warehouseLicense}
