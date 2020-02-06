@@ -8,18 +8,18 @@ const ScanBlank = ({ scanData }) => {
         cargo, id, carNumber, ownerInfo, warehouseLicense, service
     } = scanData
     const tableHead = ['Name', 'Amount', 'Package type']
-    const __tableRows = cargo.map(({id, name, amount, package}) => (
-        <Row 
-            data={[name, amount, package]} 
-            key={id} 
+    const __tableRows = cargo.map(elem => (
+        <Row
+            data={[elem.name, elem.amount, elem.package]}
+            key={elem.id}
             textStyle={styles.text}
         />
     ))
-    
+
     return (
         <ScrollView>
             <View style={styles.blankTitleWrapper}>
-                <Text style={styles.blankTitle}>TTN №{number}</Text>
+                <Text style={styles.blankTitle}>TTN №{id}</Text>
             </View>
             <View>
                 <BlankSubData
@@ -43,7 +43,7 @@ const ScanBlank = ({ scanData }) => {
 
 const styles = StyleSheet.create({
     blankTitleWrapper: {
-        flex: 1, 
+        flex: 1,
         alignItems: 'center',
         marginVertical: 20,
     },
@@ -55,14 +55,14 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
     head: {
-        height: 40, 
+        height: 40,
         backgroundColor: 'white'
     },
     text: {
         margin: 6,
     },
     borderStyle: {
-        borderWidth: 1, 
+        borderWidth: 1,
         borderColor: 'black'
     },
     table: {
