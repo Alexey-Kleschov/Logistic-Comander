@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button  } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { connect } from 'react-redux';
 import { scannerAction } from '../actions/scannerAction.js';
+import ScanResponceContainer from '../components/scaner/responceComponents/ScanResponceContainer'
 
 class ScannerScreen extends Component {
   
@@ -28,7 +29,6 @@ class ScannerScreen extends Component {
         scanned: true
       };
     });
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);    
     const parseData = JSON.parse(data);
     this.props.scannerAction(parseData);
   };
@@ -41,16 +41,22 @@ class ScannerScreen extends Component {
       return <Text>No access to camera</Text>;
     }
 
-    return (
+    return this.props.scannerData
+    ? (
+      <ScanResponceContainer 
+        scanResponce={this.props.scannerData}
+      />
+    )
+    : (
       <View style={styles.view}>
         <BarCodeScanner
           onBarCodeScanned={this.state.scanned ? undefined : this.handleBarCodeScanned}
           style={StyleSheet.absoluteFillObject}
         />
-        {this.state.scanned && <Button title={'Tap to Scan Again'} onPress={() => this.setState({ scanned: false})} />}
+        {this.state.scanned && <Button title={'Tap to Scan Again'} onPress={() => this.setState({ scanned: false })} />}
       </View>
-    );
-  };
+    )
+  }
 }
 
 const styles = StyleSheet.create({

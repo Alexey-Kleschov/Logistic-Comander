@@ -20,7 +20,7 @@ class ScanResponceContainer extends Component {
         return (
             <View>
                 <BlankModal 
-                    children={<ScanBlank/>}
+                    children={<ScanBlank scanData={this.props.scanResponce}/>}
                     width="90%"
                     height="auto"
                     bgColor="#f5f5f5"
