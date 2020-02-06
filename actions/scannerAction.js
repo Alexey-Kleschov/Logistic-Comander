@@ -6,3 +6,10 @@ export const scannerAction = payload => dispatch => {
         payload: payload
     });
 };
+
+export const scannerResetAction = () => dispatch => {
+    dispatch({
+        type: SCANNER,
+        payload: null
+    });
+};

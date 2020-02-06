@@ -8,22 +8,15 @@ import ScanBlank from './ScanBlank'
 *    about ttn blanks
 */
 class ScanResponceContainer extends Component {
-    state = {
-        isVisible: true,
-    };
-
-    setModalVisible(visible) {
-        this.setState({isVisible: visible});
-    }
-
     render() {
         return (
             <View>
                 <BlankModal 
-                    children={<ScanBlank scanData={this.props.scanResponce}/>}
+                    childrenCreator={() => <ScanBlank scanData={this.props.scanResponce}/>}
                     width="90%"
-                    height="auto"
+                    height="90%"
                     bgColor="#f5f5f5"
+                    closeAction={this.props.scannerResetAction}
                 />
             </View>
         )
