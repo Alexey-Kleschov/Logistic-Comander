@@ -3,7 +3,7 @@ import { StyleSheet, TouchableHighlight, View } from 'react-native';
 import { Overlay, Icon } from 'react-native-elements';
 
 // Create a simple blank modal 
-const BlankModal = ({ children, width, height, bgColor }) => {
+const BlankModal = ({ children, width, height, bgColor, closeAction }) => {
     const [ isVisible, setModalVisible ] = useState(true);
 
     return (
@@ -13,7 +13,10 @@ const BlankModal = ({ children, width, height, bgColor }) => {
             height={height}
             overlayBackgroundColor={bgColor}
         >
-            <TouchableHighlight onPress={() => setModalVisible(!isVisible)}>
+            <TouchableHighlight onPress={() => {
+                closeAction && closeAction()
+                setModalVisible(!isVisible)
+            }}>
                 <View style={styles.closeWrapper}>
                     <Icon style={styles.close} name="close"/>
                 </View>
@@ -28,6 +31,7 @@ const styles = StyleSheet.create({
         flex: 1, 
         alignItems: 'flex-end',
         marginTop: 10,
+        padding: 10
     },
     close: {
         zIndex: 99,
