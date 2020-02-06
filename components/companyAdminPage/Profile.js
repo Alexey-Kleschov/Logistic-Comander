@@ -1,7 +1,7 @@
 import React from 'react';
 import {Overlay, Button, Card, ListItem, Icon} from 'react-native-elements';
-import avatar from '../../resources/tenor.gif'
-import moment from 'moment'
+import avatar from '../../resources/tenor.gif';
+import moment from 'moment';
 
 const Profile = ({user, isVisible, onClose, onLogout}) => {
     return (

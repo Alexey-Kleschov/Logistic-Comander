@@ -3,9 +3,9 @@ import { StyleSheet, Text, View, Button  } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { connect } from 'react-redux';
 
-import { scannerAction } from '../actions/scannerAction.js';
-import ScanResponceContainer from './scaner/responceComponents/ScanResponceContainer';
-import BarcodeService from '../src/services/http/barCode-service';
+import { scannerAction } from '../../actions/scannerAction.js';
+import ScanResponceContainer from './responceComponents/ScanResponceContainer';
+import BarcodeService from '../../src/services/http/barCode-service';
 
 class ScannerScreen extends Component {
   
@@ -22,17 +22,25 @@ class ScannerScreen extends Component {
             hasPermission: true 
           });
         }        
-      })(); 
+      })();
   };
 
-  handleBarCodeScanned = ({ data, type }) => {
+  handleBarCodeScanned = ({ data }) => {
     this.setState(() => {
       return {
         scanned: true
       };
     });
     const parseData = JSON.parse(data);
-    this.props.scannerAction(parseData);
+    if(typeof parseData === 'number' ) {
+      ( async () => {
+        const barCodeService = new BarcodeService(); 
+        const fetchData = await barCodeService.getInvoiceFromWarehouse(this.props.token, parseData); 
+        await this.props.scannerAction(fetchData);
+      })();     
+    }else {
+      this.props.scannerAction(parseData);
+    }       
   };
 
   render() {
@@ -70,7 +78,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => ({
-  scannerData: state.scanner
+  scannerData: state.scanner,
+  token: state.auth.token
 });
 
 export default connect(
