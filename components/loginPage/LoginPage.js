@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {loginUser} from '../actions/authAction';
+import {loginUser} from '../../actions/authAction';
 import Spinner from 'react-native-loading-spinner-overlay';
 import {Input, Text, Button} from 'react-native-elements'
 import {StyleSheet, View} from 'react-native';
@@ -35,7 +35,7 @@ class LoginPage extends Component {
                     animation="fade"
                     size="large"
                 />
-                <Text h3 style={styles.head}> LOG IN</Text>
+                <Text h2 style={styles.head}> WAREHOUSING</Text>
                 <View style={styles.form}>
                     <Input
                         containerStyle={styles.input}
@@ -52,22 +52,22 @@ class LoginPage extends Component {
                             />
                         }
                     />
-                  <Input
-                      containerStyle={styles.input}
-                      inputStyle={styles.inputStyle}
-                      labelStyle={styles.label}
-                      secureTextEntry={true}
-                      onChangeText={e => this.setState({password: e})}
-                      errorMessage={this.props.errors.password}
-                      placeholder='Password'
-                      leftIcon={
-                          <Icon
-                              name='lock'
-                              size={20}
-                              color='white'
-                          />
-                      }
-                  />
+                    <Input
+                        containerStyle={styles.input}
+                        inputStyle={styles.inputStyle}
+                        labelStyle={styles.label}
+                        secureTextEntry={true}
+                        onChangeText={e => this.setState({password: e})}
+                        errorMessage={this.props.errors.password}
+                        placeholder='Password'
+                        leftIcon={
+                            <Icon
+                                name='lock'
+                                size={20}
+                                color='white'
+                            />
+                        }
+                    />
                     <Button
                         containerStyle={styles.button}
                         title="Submit"
@@ -89,27 +89,32 @@ const styles = StyleSheet.create({
     head: {
         marginTop: '25%',
         marginLeft: '10%',
-        color: 'white'
+        color: '#f5f5f5'
     },
+    headTwo:{
+        marginLeft: '10%',
+        color: '#f5f5f5'
+    },
+
     form: {
         flex: 1,
         flexDirection: 'column',
         marginLeft: '10%',
         width: '80%',
-        marginTop: '10%',
+        marginTop: '25%',
     },
     input: {
-      marginTop: '8%',
+        marginTop: '8%',
     },
     inputStyle: {
-        marginLeft:'8%',
-        color:'white',
+        marginLeft: '8%',
+        color: 'white',
     },
-    label:{
-        color:'#f5f5f5'
+    label: {
+        color: '#f5f5f5'
     },
-    button:{
-       marginTop:'20%'
+    button: {
+        marginTop: '65%'
     },
 
 });
@@ -119,7 +124,4 @@ const mapStateToProps = state => ({
     errors: state.errors,
 });
 
-export default connect(
-    mapStateToProps,
-    {loginUser},
-)(LoginPage);
+export default connect(mapStateToProps, {loginUser},)(LoginPage);
