@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Avatar, Text} from 'react-native-elements';
+import {Avatar, Text,Icon} from 'react-native-elements';
 import Header from "./Header";
 import {StyleSheet, View} from "react-native";
 
@@ -17,7 +17,7 @@ class HomeScreen extends Component {
                 <View style={styles.circlesContainer}>
                     <View style={styles.centerContainer}>
                         <Avatar
-                            icon={{name: 'camera-retro', type: 'font-awesome',color:'#f5f5f5'}}
+                            icon={{name: 'home', type: 'font-awesome',color:'#f5f5f5'}}
                             overlayContainerStyle={{backgroundColor: '#292f45'}}
                             size="xlarge"
                             rounded
