@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Image, Animated, TouchableOpacity, Dimensions } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { connect } from 'react-redux';
 import BarcodeService from '../../src/services/http/barCode-service';
@@ -10,7 +10,9 @@ class ScannerScreen extends Component {
   
   state = {
     hasPermission: null,
-    scanned: false
+    scanned: false,
+    animationLineHeight: 0,
+    focusLineAnimation: new Animated.Value(0)
   };
 
   componentDidMount() {
@@ -22,6 +24,20 @@ class ScannerScreen extends Component {
           });
         }        
       })();
+
+      const animateLine = () => {
+        Animated.sequence([
+        Animated.timing(this.state.focusLineAnimation, {
+        toValue: 1,
+        duration: 1000,
+        }),
+        Animated.timing(this.state.focusLineAnimation, {
+        toValue: 0,
+        duration: 1000,
+        }),
+        ]).start(animateLine)
+      };
+      animateLine();
   };
 
   handleBarCodeScanned = ({ data }) => {
@@ -58,23 +74,105 @@ class ScannerScreen extends Component {
       />
     )
     : (
-      <View style={styles.view}>
-        <BarCodeScanner
-          onBarCodeScanned={this.state.scanned ? undefined : this.handleBarCodeScanned}
-          style={StyleSheet.absoluteFillObject}
-        />
-        {this.state.scanned && <Button title={'Tap to Scan Again'} onPress={() => this.setState({ scanned: false })} />}
-      </View>
-    )
+        <View style={styles.container}>
+          <BarCodeScanner
+            onBarCodeScanned={this.state.scanned ? undefined : this.handleBarCodeScanned}
+            style={StyleSheet.absoluteFillObject}
+          />          
+          <Text style={styles.description}>Scan your code</Text>
+          <View style={styles.overlay}>
+            <View style={styles.unfocusedContainer}></View>
+            <View style={styles.middleContainer}>
+              <View style={styles.unfocusedContainer}></View>
+              <View
+                onLayout={e => this.setState({animationLineHeight : e.nativeEvent.layout.height})}
+                style={styles.focusedContainer}
+              >
+                {!this.state.scanned && (
+                  <Animated.View
+                  style={[
+                    styles.animationLineStyle,
+                    {
+                      transform: [
+                        { 
+                          translateY: this.state.focusLineAnimation.interpolate({ inputRange: [0, 1], outputRange: [0, this.state.animationLineHeight]}),
+                        },
+                      ],
+                    },
+                  ]}
+                  />
+                )}
+                {this.state.scanned && (
+                  <TouchableOpacity
+                    onPress={() => this.setState({ scanned: false})}
+                    style={styles.rescanIconContainer}
+                  >
+                    <Image
+                      source={require('../../assets/images/scanner/scan.png')}
+                      style={{width: 70, height: 70}}
+                    />
+                  </TouchableOpacity>
+                )}
+              </View>
+          <View style={styles.unfocusedContainer}></View>
+          </View>
+          <View style={styles.unfocusedContainer}></View>
+          </View>
+        </View>
+    );
   }
-}
+};
+
+const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
-  view: {
+  container: {
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-end'
-  }  
+    position: 'relative',   
+  },
+  overlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
+  unfocusedContainer: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.7)'
+  },
+  middleContainer: {
+    flexDirection: 'row',
+    flex: 1.5,
+  },
+  focusedContainer: {
+    flex: 6,    
+  },
+  animationLineStyle: {    
+    height: 7,
+    width: '100%',
+    backgroundColor: 'green',
+    shadowColor: 'yellow',
+    shadowOpacity: 0.5,
+    shadowRadius: 25.7,
+    shadowOffset: {
+      width: 0,
+      height: 20
+    },
+    elevation: 1,
+  },
+  rescanIconContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  description: {
+    fontSize: width * 0.09,
+    marginTop: '20%',
+    textAlign: 'center',
+    width: '100%',
+    color: 'white',
+  }
 });
 
 const mapStateToProps = (state) => ({
