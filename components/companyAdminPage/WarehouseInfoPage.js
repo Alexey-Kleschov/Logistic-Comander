@@ -20,25 +20,14 @@ import {setProducts} from '../../actions/productsAction';
 import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import warehouseImage from '../../resources/warehouse.png';
-
-const styles = StyleSheet.create({
-  icon: {
-    marginRight: '2%',
-    color: 'white',
-  },
-  mainContainer: {
-    backgroundColor: '#282E29',
-    fontFamily: 'arial',
-  },
-  list: {
-    backgroundColor: '#454545',
-  },
-  text: {
-    color: 'white',
-  },
-});
+import Header from "./Header";
 
 class WarehouseInfoPage extends Component {
+  static navigationOptions = {
+    header:()=><Header
+        title='WAREHOUSE INFORMATION'
+    />
+  };
   handleSetAreaInfo = data => {
     this.props.setProducts(data);
     this.props.navigation.navigate('ProductsPage')
@@ -123,6 +112,23 @@ class WarehouseInfoPage extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  icon: {
+    marginRight: '2%',
+    color: 'white',
+  },
+  mainContainer: {
+    backgroundColor: '#292f45',
+    fontFamily: 'arial',
+  },
+  list: {
+    backgroundColor: '#292f45',
+  },
+  text: {
+    color: 'white',
+  },
+});
 
 const mapStateToProps = state => ({
   warehouse: state.warehouse,

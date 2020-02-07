@@ -24,6 +24,10 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "android": {
+      "package": "logisticComander.com",
+      "versionCode": 1
+    },
     "ios": {
       "supportsTablet": true
     }
