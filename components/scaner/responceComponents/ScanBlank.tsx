@@ -3,12 +3,32 @@ import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { Table, Row } from 'react-native-table-component';
 import BlankSubData from "./BlankSubData";
 
-const ScanBlank = ({ scanData }) => {
+type elemType = {
+    id: string,
+    name: string,
+    amount: string,
+    package: string
+}
+
+type scanDataType = {
+    cargo: Array<elemType>,
+    id: string,
+    carNumber: string,
+    ownerInfo: string,
+    warehouseLicense: string,
+    service: string,
+}
+
+export interface Props {
+    scanData: scanDataType
+} 
+
+const ScanBlank = ({ scanData }: Props) => {
     const {
         cargo, id, carNumber, ownerInfo, warehouseLicense, service
     } = scanData
     const tableHead = ['Name', 'Amount', 'Package type']
-    const __tableRows = cargo.map(elem => (
+    const __tableRows = cargo.map((elem: elemType) => (
         <Row
             data={[elem.name, elem.amount, elem.package]}
             key={elem.id}
