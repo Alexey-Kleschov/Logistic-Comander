@@ -5,9 +5,14 @@ import { connect } from 'react-redux';
 import BarcodeService from '../../src/services/http/barCode-service';
 import { scannerAction, scannerResetAction } from '../../actions/scannerAction';
 import ScanResponceContainer from '../../components/scaner/responceComponents/ScanResponceContainer'
+import Header from "../operatorPage/Header";
 
 class ScannerScreen extends Component {
-  
+
+  static navigationOptions = {
+    header:<Header title='Scanner'/>
+  };
+
   state = {
     hasPermission: null,
     scanned: false,
@@ -20,9 +25,9 @@ class ScannerScreen extends Component {
         const { status } = await BarCodeScanner.requestPermissionsAsync();
         if (status === 'granted') {
           this.setState({
-            hasPermission: true 
+            hasPermission: true
           });
-        }        
+        }
       })();
 
       const animateLine = () => {
@@ -49,13 +54,13 @@ class ScannerScreen extends Component {
     const parseData = JSON.parse(data);
     if(typeof parseData === 'number' ) {
       ( async () => {
-        const barCodeService = new BarcodeService(); 
-        const fetchData = await barCodeService.getInvoiceFromWarehouse(this.props.token, parseData); 
+        const barCodeService = new BarcodeService();
+        const fetchData = await barCodeService.getInvoiceFromWarehouse(this.props.token, parseData);
         await this.props.scannerAction(fetchData);
-      })();     
+      })();
     }else {
       this.props.scannerAction(parseData);
-    }       
+    }
   };
 
   render() {
@@ -68,7 +73,7 @@ class ScannerScreen extends Component {
 
     return this.props.scannerData
     ? (
-      <ScanResponceContainer 
+      <ScanResponceContainer
         scanResponce={this.props.scannerData}
         scannerResetAction={this.props.scannerResetAction}
       />
@@ -78,7 +83,7 @@ class ScannerScreen extends Component {
           <BarCodeScanner
             onBarCodeScanned={this.state.scanned ? undefined : this.handleBarCodeScanned}
             style={StyleSheet.absoluteFillObject}
-          />          
+          />
           <Text style={styles.description}>Scan your code</Text>
           <View style={styles.overlay}>
             <View style={styles.unfocusedContainer}></View>
@@ -94,7 +99,7 @@ class ScannerScreen extends Component {
                     styles.animationLineStyle,
                     {
                       transform: [
-                        { 
+                        {
                           translateY: this.state.focusLineAnimation.interpolate({ inputRange: [0, 1], outputRange: [0, this.state.animationLineHeight]}),
                         },
                       ],
@@ -128,7 +133,8 @@ const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    position: 'relative',   
+    position: 'relative',
+    backgroundColor:'#292f45'
   },
   overlay: {
     position: 'absolute',
@@ -136,6 +142,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
+    width:'100%'
   },
   unfocusedContainer: {
     flex: 1,
@@ -146,9 +153,9 @@ const styles = StyleSheet.create({
     flex: 1.5,
   },
   focusedContainer: {
-    flex: 6,    
+    flex: 6,
   },
-  animationLineStyle: {    
+  animationLineStyle: {
     height: 7,
     width: '100%',
     backgroundColor: 'green',
