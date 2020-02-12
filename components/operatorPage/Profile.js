@@ -1,6 +1,6 @@
 import React from 'react';
 import {Overlay, Button, Card, ListItem, Icon} from 'react-native-elements';
-import avatar from '../../resources/tenor.gif'
+import avatar from '../../resources/yra.jpg'
 import moment from 'moment'
 
 const Profile = ({user, isVisible, onClose, onLogout}) => {
@@ -37,6 +37,7 @@ const Profile = ({user, isVisible, onClose, onLogout}) => {
                 onPress={onClose}/>
             <Card
                 image={avatar}
+                imageStyle={{height:190}}
             >
                 {profileList.map((elem, index) => {
                     return (<ListItem
@@ -47,7 +48,7 @@ const Profile = ({user, isVisible, onClose, onLogout}) => {
                     />)
                 })}
                 <Button
-                    containerStyle={{marginTop: '13%'}}
+                    containerStyle={{marginTop: '5%'}}
                     title='SIGN OUT'
                     onPress={onLogout}/>
 

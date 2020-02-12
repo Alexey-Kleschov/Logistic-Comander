@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {CURRENT_USER, ERRORS} from './types';
+import {CURRENT_USER, ERRORS,SERVICE} from './types';
 import jwt_decode from 'jwt-decode';
 import {serverConfig} from '../serverConfig';
 
