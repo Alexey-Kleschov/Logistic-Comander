@@ -29,10 +29,15 @@ class LoginPage extends Component {
         };
 
         spinner();
+        
+        if(this.props.service === 'Express Cargo') {
+            this.props.loginUser(user, spinner, this.props.service);
+        }
         this.props.loginUser(user, spinner);
     };
 
     render() {
+        console.log(this.props.service);
         return (
             <View style={styles.mainView}>
                 <Spinner
