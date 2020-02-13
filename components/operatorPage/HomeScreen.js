@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Avatar, Text} from 'react-native-elements';
 import Header from "./Header";
 import {StyleSheet, View} from "react-native";
+import LeadNavigator from '../driverNavigator/leadNavigator/LeadNavigator'
 
 class HomeScreen extends Component {
     static navigationOptions = {
@@ -11,6 +12,7 @@ class HomeScreen extends Component {
     render() {
         return (
             <View style={styles.mainView}>
+                {/* <LeadNavigator /> */}
                 <View style={styles.circlesContainer}>
                     <View style={styles.leftRightContainer}>
                         <Avatar

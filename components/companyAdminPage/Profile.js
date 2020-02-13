@@ -4,7 +4,6 @@ import avatar from '../../resources/greta.jpg';
 import moment from 'moment';
 
 const Profile = ({user, isVisible, onClose, onLogout}) => {
-    console.log(user)
     const profileList = [
         {
             avatar: 'home',
@@ -23,6 +22,7 @@ const Profile = ({user, isVisible, onClose, onLogout}) => {
             item: moment(user.createDate).format('MMMM Do YYYY')
         },
     ]
+
     return (
         <Overlay isVisible={isVisible} onBackdropPress={onClose} fullScreen overlayBackgroundColor={'#f5f5f5'}>
             <Icon
@@ -49,7 +49,6 @@ const Profile = ({user, isVisible, onClose, onLogout}) => {
                     onPress={onLogout}/>
 
             </Card>
-
         </Overlay>
     );
 }
