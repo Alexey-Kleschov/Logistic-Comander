@@ -15,7 +15,6 @@ import {
   Thumbnail,
 } from 'native-base';
 import {Image, Linking, Platform} from 'react-native';
-import {Actions} from 'react-native-router-flux';
 import {setProducts} from '../../actions/productsAction';
 import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
@@ -23,11 +22,11 @@ import warehouseImage from '../../resources/warehouse.png';
 import Header from "./Header";
 
 class WarehouseInfoPage extends Component {
-  static navigationOptions = {
-    header:()=><Header
-        title='WAREHOUSE INFORMATION'
-    />
-  };
+
+  static navigationOptions = ({navigation}) => ({
+    header: <Header title='WAREHOUSE INFORMATION' navigation={navigation} profile={true}/>
+  });
+
   handleSetAreaInfo = data => {
     this.props.setProducts(data);
     this.props.navigation.navigate('ProductsPage')

@@ -33,11 +33,9 @@ const styles = {
 };
 
 class ProductsInfoPage extends Component {
-    static navigationOptions = {
-        header: () => <Header
-            title='PRODUCTS INFORMATION'
-        />
-    };
+    static navigationOptions = ({navigation}) => ({
+        header: <Header title='PRODUCTS INFORMATION' navigation={navigation} profile={true}/>
+    });
 
     render() {
         const products = this.props.products.map(elem => {

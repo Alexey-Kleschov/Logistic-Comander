@@ -4,6 +4,7 @@ import {StyleSheet, View} from "react-native";
 import {Button, Input, Text} from "react-native-elements";
 import {connect} from "react-redux";
 import {setService} from "../../actions/serviceAction";
+import Header from "../header/Header";
 
 let data = [{
     value: 'Warehousing',
@@ -13,7 +14,7 @@ let data = [{
 
 class Service extends Component {
     static navigationOptions = {
-        header:null
+        header: <Header title='SERVICE'/>
     };
 
     state = {
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#292f45',
     },
     head: {
-        marginTop: '25%',
+        marginTop: 70,
         marginLeft: '10%',
         color: '#f5f5f5'
     },
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
         marginTop: '25%',
     },
     button: {
-        marginTop: '90%'
+        marginTop: 230
     },
 
 });

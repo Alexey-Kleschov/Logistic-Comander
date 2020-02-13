@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {Avatar, Text} from 'react-native-elements';
-import Header from "./Header";
+import Header from "../header/Header";
 import {StyleSheet, View} from "react-native";
 
 class HomeScreen extends Component {
-    static navigationOptions = {
-        header:<Header title='HOME PAGE'/>
-    };
+    static navigationOptions = () => ({
+        header: <Header title='HOME PAGE' profile={true}/>
+    });
 
     render() {
         return (

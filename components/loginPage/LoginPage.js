@@ -5,12 +5,12 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import {Input, Text, Button} from 'react-native-elements'
 import {StyleSheet, View} from 'react-native';
 import Icon from "react-native-vector-icons/MaterialIcons";
-import Header from "./Header";
+import Header from "../header/Header";
 
 class LoginPage extends Component {
-    static navigationOptions = {
-        header:<Header title='LOGIN'/>
-    };
+    static navigationOptions = ({navigation}) => ({
+        header: <Header title='LOGIN' navigation={navigation}/>
+    });
 
     state = {
         email: '',
@@ -29,15 +29,14 @@ class LoginPage extends Component {
         };
 
         spinner();
-        
-        if(this.props.service === 'Express Cargo') {
+
+        if (this.props.service === 'Express Cargo') {
             this.props.loginUser(user, spinner, this.props.service);
         }
         this.props.loginUser(user, spinner);
     };
 
     render() {
-        console.log(this.props.service);
         return (
             <View style={styles.mainView}>
                 <Spinner
@@ -101,7 +100,7 @@ const styles = StyleSheet.create({
         marginLeft: '10%',
         color: '#f5f5f5'
     },
-    headTwo:{
+    headTwo: {
         marginLeft: '10%',
         color: '#f5f5f5'
     },
@@ -124,7 +123,7 @@ const styles = StyleSheet.create({
         color: '#f5f5f5'
     },
     button: {
-        marginTop: '55%'
+        marginTop: 160
     },
 
 });
@@ -132,7 +131,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
     auth: state.auth,
     errors: state.errors,
-    service:state.service
+    service: state.service
 });
 
 export default connect(mapStateToProps, {loginUser},)(LoginPage);

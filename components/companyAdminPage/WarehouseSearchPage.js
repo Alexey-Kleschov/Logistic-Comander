@@ -8,11 +8,9 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import Header from "./Header";
 
 class WarehouseSearchPage extends Component {
-  static navigationOptions = {
-    header:()=><Header
-        title='WAREHOUSE SEARCH'
-    />
-  };
+  static navigationOptions = ({navigation}) => ({
+    header: <Header title='WAREHOUSE SEARCH' navigation={navigation} profile={true}/>
+  });
 
   state = {
     license: '',
