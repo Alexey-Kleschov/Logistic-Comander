@@ -17,6 +17,7 @@ export const loginUser = (user, spinner, service = '') => dispatch => {
         .post(`${URL}login`, user)
         .then(res => {
             const {token} = res.data;
+            console.log(token);
             const decoded = jwt_decode(token);
             dispatch(setCurrentUser(decoded, token));
         })
