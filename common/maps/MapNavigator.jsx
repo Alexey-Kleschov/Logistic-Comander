@@ -1,17 +1,18 @@
 import React from 'react';
-import MapView, { Polyline, PROVIDER_GOOGLE } from 'react-native-maps';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import MapView, { Polyline, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-const { width, height } = Dimensions.get('window');
-const LATT_DELTA = 0.0922;
-const LONG_DELTA = LATT_DELTA * (width / height);
-
-const MapNavigator = ({ gpsData, leadCoordinates }) => {
-
-    const latitude = parseFloat(gpsData.coords.latitude);
-    const longitude = parseFloat(gpsData.coords.longitude);
-    const altitude = parseFloat(gpsData.coords.altitude);
-    const speed = parseFloat(gpsData.coords.speed) * 1000 / 3600;
+const MapNavigator = (props) => {
+    const { 
+        speed, 
+        latitude, 
+        longitude, 
+        routeCoordinates,
+        distanceTravelled,
+        coordinate,
+        changeMarker,
+    } = props;
+    const speedKMH = parseFloat(speed) * 1000 / 3600;
 
     return (
         <View>
@@ -20,36 +21,36 @@ const MapNavigator = ({ gpsData, leadCoordinates }) => {
                     showsUserLocation
                     followsUserLocation
                     provider={PROVIDER_GOOGLE}
+                    loadingEnabled
                     region={{
                         latitude,
                         longitude,
-                        latitudeDelta: LATT_DELTA,
-                        longitudeDelta: LONG_DELTA,
+                        latitudeDelta: 0.009,
+                        longitudeDelta: 0.009,
                     }}
                     style={styles.map}
                 >
                     <Polyline
-                        coordinates={leadCoordinates}
+                        coordinates={routeCoordinates}
                         strokeWidth={5}
+                    />
+                    <Marker.Animated
+                        ref={marker => {
+                            changeMarker(marker)
+                        }}
+                        coordinate={coordinate}
                     />
                 </MapView>
             </View>
-            <View>
-                <View>
-                    <Text>latitude: {latitude}</Text>
-                </View>
-                <View>
-                    <Text>longitude: {longitude}</Text>
-                </View>
-                <View>
-                    <Text>spees: {speed}km/h</Text>
-                </View>
-                <View>
-                    <Text>altitude: {altitude}m</Text>
-                </View>
-                <View>
-                    <Text>requests: {moveCounter}</Text>
-                </View>
+            <View style={styles.buttonContainer}>
+                <TouchableOpacity style={[styles.bubble, styles.button]}>
+                    <Text style={styles.bottomBarContent}>
+                        {parseFloat(distanceTravelled).toFixed(2)} km
+                    </Text>
+                    <Text style={styles.bottomBarContent}>
+                        {speedKMH}km/h
+                    </Text>
+                </TouchableOpacity>
             </View>
         </View>
     )
@@ -67,6 +68,28 @@ const styles = StyleSheet.create({
     map: {
         ...StyleSheet.absoluteFillObject,
     },
+    bubble: {
+        flex: 1,
+        backgroundColor: "rgba(255,255,255,0.7)",
+        paddingHorizontal: 18,
+        paddingVertical: 12,
+        borderRadius: 20
+      },
+    latlng: {
+        width: 200,
+        alignItems: "stretch"
+    },
+    button: {
+        width: 80,
+        paddingHorizontal: 12,
+        alignItems: "center",
+        marginHorizontal: 10
+    },
+    buttonContainer: {
+        flexDirection: "row",
+        marginVertical: 20,
+        backgroundColor: "transparent"
+    }
 });
 
 export default MapNavigator;
