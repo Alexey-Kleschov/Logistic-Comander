@@ -12,8 +12,8 @@ class HomeScreen extends Component {
     render() {
         return (
             <View style={styles.mainView}>
-                {/* <LeadNavigator /> */}
-                <View style={styles.circlesContainer}>
+                <LeadNavigator />
+                {/* <View style={styles.circlesContainer}>
                     <View style={styles.leftRightContainer}>
                         <Avatar
                             icon={{name: 'clipboard', type: 'font-awesome',color:'#f5f5f5'}}
@@ -61,7 +61,7 @@ class HomeScreen extends Component {
                         activeOpacity={0.7}
                     />
                     </View>
-                </View>
+                </View> */}
             </View>
         );
     }

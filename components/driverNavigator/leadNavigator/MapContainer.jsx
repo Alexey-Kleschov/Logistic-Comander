@@ -1,59 +1,55 @@
 import React, { useState, useEffect } from 'react';
 import MapNavigator from '../../../common/maps/MapNavigator';
-import { View, Text } from 'react-native';
-import {GetLocation} from 'react-native-geolocation-service';
+import { View } from 'react-native';
 
-const NavigatorMap = () => {
+/*
+    GPS-Navigator component
+*/
+const MapContainer = () => {
     const [ gpsData, setGpsData ] = useState();
+    const [ moveCounter, setmoveCounter ] = useState(0);
+    const [ leadCoordinates, addLeadCoordinate ] = useState([]);
+
+    const geoResolve = (data) => {
+        setGpsData(data);
+        setmoveCounter(moveCounter + 1);
+        const leadDot = {
+            latitude: parseFloat(data.coords.latitude),
+            longitude: parseFloat(data.coords.longitude),
+        }
+        addLeadCoordinate([...leadCoordinates, leadDot]);
+    }
+
+    const geoReject = (err) => {
+        console.log(err.code, err.message);
+    }
 
     useEffect(() => {
-        const LOCATION_RECIVE_TIMEOUT = 30000;
-        const MAX_LOCATION_RECIVE_TIMEOUT = 30000;
         const options = { 
-            // enableHighAccuracy: true, 
-            timeout: LOCATION_RECIVE_TIMEOUT, 
-            maximumAge: MAX_LOCATION_RECIVE_TIMEOUT 
+            enableHighAccuracy: true, 
+            timeout: 20000, 
+            maximumAge: 1000,
+            distanceFilter: 10
         }
+        const watchId = navigator.geolocation.watchPosition(geoResolve, geoReject, options);
 
-        GetLocation.getCurrentPosition(
-            (position) => {
-                console.log(position);
-                setGpsData(position)
-            },
-            (error) => {
-                console.log('ERRR');
-                console.log(error.code, error.message);
-            },
-            options
-        )
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
+        return () => {
+            navigator.geolocation.clearWatch(watchId)
+        }
     }, []);
     
-    if(gpsData) {
-        const { latitude, longitude, altitude, speed } = gpsData
-        const FORMATED_DRIVR_SPEED = speed * 1000 /3600
-        const location = { 
-            lat: latitude, 
-            lng: longitude 
-        };
-
+    if(gpsData?.coords) {
         return (
             <View>
                 <MapNavigator 
-                    location={location}
-                    zoom={1}
-                    mapHeight='45%'
-                    speed={FORMATED_DRIVR_SPEED}
-                    altitude={altitude}
+                    gpsData={gpsData}
+                    leadCoordinates={leadCoordinates}
                 />
             </View>
         )
     } else {
-        console.log(gpsData);
-        
         return <Text>Loading ...</Text>
     }
-}
+};
 
-export default NavigatorMap;
+export default MapContainer;

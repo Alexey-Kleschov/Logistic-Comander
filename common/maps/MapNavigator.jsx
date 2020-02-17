@@ -1,53 +1,72 @@
 import React from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
-import { PropTypes } from 'prop-types';
-import { View, Text } from 'react-native';
+import MapView, { Polyline, PROVIDER_GOOGLE } from 'react-native-maps';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
 
-const MapNavigator = ({ location, google, zoom=5, mapHeight='50%', speed, altitude }) => {
+const { width, height } = Dimensions.get('window');
+const LATT_DELTA = 0.0922;
+const LONG_DELTA = LATT_DELTA * (width / height);
+
+const MapNavigator = ({ gpsData, leadCoordinates }) => {
+
+    const latitude = parseFloat(gpsData.coords.latitude);
+    const longitude = parseFloat(gpsData.coords.longitude);
+    const altitude = parseFloat(gpsData.coords.altitude);
+    const speed = parseFloat(gpsData.coords.speed) * 1000 / 3600;
+
     return (
         <View>
-            <View>
-                <Map
-                    google={google}
-                    zoom={zoom}
-                    initialCenter={location}
-                    style={{
-                        height:`${mapHeight}px`, 
-                        border:'#3e43a1 solid 1px', 
-                        marginBottom:'5%',
+            <View style={styles.mapContainer}>
+                <MapView
+                    showsUserLocation
+                    followsUserLocation
+                    provider={PROVIDER_GOOGLE}
+                    region={{
+                        latitude,
+                        longitude,
+                        latitudeDelta: LATT_DELTA,
+                        longitudeDelta: LONG_DELTA,
                     }}
+                    style={styles.map}
                 >
-                    <Marker
-                        name="driverRealtimePosition"
-                        position={{
-                            lat: location.lat,
-                            lng: location.lng,
-                        }}
+                    <Polyline
+                        coordinates={leadCoordinates}
+                        strokeWidth={5}
                     />
-                </Map>
+                </MapView>
             </View>
-            {speed && (
+            <View>
                 <View>
-                    <Text>{ speed } km/h</Text>
+                    <Text>latitude: {latitude}</Text>
                 </View>
-            )}
-            {altitude && (
                 <View>
-                    <Text>{ altitude } m</Text>
+                    <Text>longitude: {longitude}</Text>
                 </View>
-            )}
+                <View>
+                    <Text>spees: {speed}km/h</Text>
+                </View>
+                <View>
+                    <Text>altitude: {altitude}m</Text>
+                </View>
+                <View>
+                    <Text>requests: {moveCounter}</Text>
+                </View>
+            </View>
         </View>
     )
-}
-
-MapNavigator.propTypes = {
-    GPS: PropTypes.object.isRequired,
-    google: PropTypes.object.isRequired,
-    zoom: PropTypes.number,
-    mapHeight: PropTypes.string,
 };
 
-export default GoogleApiWrapper({
-    apiKey: 'AIzaSyCCqDJQC4lVsw4pDBHE9D7NbPnlLtqO4yE',
-    libraries: ['places'],
-})(MapNavigator);
+const styles = StyleSheet.create({
+    mapContainer: {
+        ...StyleSheet.absoluteFillObject,
+        height: 400,
+        width: 400,
+        flex: 1,
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+    },
+    map: {
+        ...StyleSheet.absoluteFillObject,
+    },
+});
+
+export default MapNavigator;
