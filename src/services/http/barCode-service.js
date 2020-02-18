@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { serverConfig } from '../../../serverConfig';
+import { warehouseConfig } from '../../../serverConfig';
 
 export default class BarcodeService { 
 
@@ -13,7 +13,7 @@ export default class BarcodeService {
 
       return new Promise( (resolve, reject) => {
         axios
-          .get(`${serverConfig}/ttnImportOrders/${barCodePayload}`, headers)
+          .get(`${warehouseConfig}/ttnImportOrders/${barCodePayload}`, headers)
           .then( res => {
             resolve(res.data);
           })

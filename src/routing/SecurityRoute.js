@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import OperatorNavigation from './operatorRoutes/Navigation';
 import CompanyAdminNavigation from './companyAdminRoutes/Navigation';
-import LoginPage from '../../components/loginPage/LoginPage';
+import LoginNavigation from './loginRoutes/Navigation';
+import DriverNavigation from './driverRoutes/Navigation';
 
 class SecurityRoute extends Component {
 
@@ -12,9 +13,11 @@ class SecurityRoute extends Component {
                 case 'employee':
                     return (<OperatorNavigation/>);
                 case 'companyAdmin':
-                    return (<CompanyAdminNavigation/>)
+                    return (<CompanyAdminNavigation/>);
+                case 'driver':
+                    return (<DriverNavigation/>);
             }
-        } else return <LoginPage/>
+        } else return <LoginNavigation/>
     }
 }
 

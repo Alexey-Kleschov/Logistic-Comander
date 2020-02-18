@@ -34,6 +34,7 @@ const Profile = ({user, isVisible, onClose, onLogout}) => {
                 onPress={onClose}/>
             <Card
                 image={avatar}
+                imageStyle={{height:245}}
             >
                 {profileList.map((elem, index) => {
                     return (<ListItem
@@ -44,7 +45,7 @@ const Profile = ({user, isVisible, onClose, onLogout}) => {
                     />)
                 })}
                 <Button
-                    containerStyle={{marginTop: '13%'}}
+                    containerStyle={{marginTop: '5%'}}
                     title='SIGN OUT'
                     onPress={onLogout}/>
 
