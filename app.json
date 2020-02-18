@@ -14,7 +14,6 @@
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
-      "width": "80px",
       "resizeMode": "contain",
       "backgroundColor": "#292f45"
     },
@@ -30,6 +29,9 @@
     },
     "ios": {
       "supportsTablet": true
-    }
-  }
+    },
+    "entryPoint": "node_modules/expo/AppEntry.js"
+  },
+  "displayName": "logistic-comander",
+  "name": "lc"
 }

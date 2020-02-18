@@ -5,8 +5,13 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import {Input, Text, Button} from 'react-native-elements'
 import {StyleSheet, View} from 'react-native';
 import Icon from "react-native-vector-icons/MaterialIcons";
+import Header from "./Header";
 
 class LoginPage extends Component {
+    static navigationOptions = {
+        header:<Header title='LOGIN'/>
+    };
+
     state = {
         email: '',
         password: '',
@@ -24,10 +29,15 @@ class LoginPage extends Component {
         };
 
         spinner();
+        
+        if(this.props.service === 'Express Cargo') {
+            this.props.loginUser(user, spinner, this.props.service);
+        }
         this.props.loginUser(user, spinner);
     };
 
     render() {
+        console.log(this.props.service);
         return (
             <View style={styles.mainView}>
                 <Spinner
@@ -35,7 +45,7 @@ class LoginPage extends Component {
                     animation="fade"
                     size="large"
                 />
-                <Text h2 style={styles.head}> WAREHOUSING</Text>
+                <Text h2 style={styles.head}>{this.props.service.toUpperCase()}</Text>
                 <View style={styles.form}>
                     <Input
                         containerStyle={styles.input}
@@ -87,7 +97,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#292f45',
     },
     head: {
-        marginTop: '25%',
+        marginTop: '15%',
         marginLeft: '10%',
         color: '#f5f5f5'
     },
@@ -114,7 +124,7 @@ const styles = StyleSheet.create({
         color: '#f5f5f5'
     },
     button: {
-        marginTop: '65%'
+        marginTop: '55%'
     },
 
 });
@@ -122,6 +132,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
     auth: state.auth,
     errors: state.errors,
+    service:state.service
 });
 
 export default connect(mapStateToProps, {loginUser},)(LoginPage);

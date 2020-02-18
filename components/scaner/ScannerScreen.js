@@ -1,3 +1,4 @@
+
 import React, { Component } from "react";
 import {
   StyleSheet,
@@ -16,6 +17,11 @@ import ScanResponceContainer from "../../components/scaner/responceComponents/Sc
 import ErrorAlert from '../../common/alerts/ErrAlert'
 
 class ScannerScreen extends Component {
+
+  static navigationOptions = {
+    header:<Header title='Scanner'/>
+  };
+
   state = {
     hasPermission: null,
     scanned: false,
@@ -94,7 +100,7 @@ class ScannerScreen extends Component {
         errHendler={this.errHendler}
     />;
     }
-
+    
     return (
       this.props.scannerData ? (
         <ScanResponceContainer
@@ -142,6 +148,7 @@ class ScannerScreen extends Component {
                         ]
                       }
                     ]}
+
                   />
                 )}
                 {this.state.scanned && (
@@ -171,14 +178,16 @@ const { width } = Dimensions.get("window");
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    position: "relative"
+    position: 'relative',
+    backgroundColor:'#292f45'
   },
   overlay: {
     position: "absolute",
     top: 0,
     left: 0,
     right: 0,
-    bottom: 0
+    bottom: 0,
+    width:'100%'
   },
   unfocusedContainer: {
     flex: 1,
@@ -189,7 +198,7 @@ const styles = StyleSheet.create({
     flex: 1.5
   },
   focusedContainer: {
-    flex: 6
+    flex: 6,
   },
   animationLineStyle: {
     height: 7,
@@ -223,6 +232,4 @@ const mapStateToProps = state => ({
   token: state.auth.token
 });
 
-export default connect(mapStateToProps, { scannerAction, scannerResetAction })(
-  ScannerScreen
-);
+export default connect(mapStateToProps, { scannerAction, scannerResetAction })(ScannerScreen);
