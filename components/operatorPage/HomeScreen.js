@@ -5,7 +5,7 @@ import {StyleSheet, View} from "react-native";
 
 class HomeScreen extends Component {
     static navigationOptions = {
-        header:<Header title='HOME PAGE'/>
+        header: <Header title='HOME PAGE'/>
     };
 
     render() {
