@@ -1,10 +1,9 @@
 import React, { PureComponent } from 'react';
 import MapNavigator from '../../../common/maps/MapNavigator';
-import { Platform, Dimensions, Text } from 'react-native';
+import { Platform, Text } from 'react-native';
 import { AnimatedRegion } from 'react-native-maps'
 import haversine from "haversine";
 
-const { width, height } = Dimensions.get('window');
 // For test
 const LATITUDE = 52.4339;
 const LONGITUDE = 31.0089;
