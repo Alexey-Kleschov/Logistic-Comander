@@ -10,7 +10,7 @@ const MapNavigator = (props) => {
         routeCoordinates,
         distanceTravelled,
         coordinate,
-        changeMarker,
+        driverRouteCoords
     } = props;
     const speedKMH = parseFloat(speed) * 1000 / 3600;
 
@@ -35,9 +35,6 @@ const MapNavigator = (props) => {
                         strokeWidth={5}
                     />
                     <Marker.Animated
-                        ref={marker => {
-                            changeMarker(marker)
-                        }}
                         coordinate={coordinate}
                     />
                 </MapView>

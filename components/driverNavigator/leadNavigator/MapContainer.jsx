@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import MapNavigator from '../../../common/maps/MapNavigator';
 import { Platform, Text } from 'react-native';
 import { AnimatedRegion } from 'react-native-maps'
-import haversine from "haversine";
+import haversine from 'haversine';
 
 // For test
 const LATITUDE = 52.4339;
@@ -14,6 +14,32 @@ const LONG_DELTA = 0.009;
 /*
     GPS Navigator container component
 */
+
+
+const testData = {
+    waybill: {
+        arrivedPointId: 871,
+        date: '2034-02-11T21:00:00.000Z',
+        departurePointId: 872,
+        driverId: 195,
+        finish: {
+          id: 871,
+          latitude: 53.9006011,
+          longitude: 27.558972,
+          name: 'Минск, Беларусь',
+        },
+        id: 469,
+        start: {
+          id: 872,
+          latitude: 52.4313388,
+          longitude: 30.99367,
+          name: 'Гомель, Беларусь',
+        },
+        vehicleId: 102,
+    },
+    waybillId: 469,
+}
+
 class MapContainer extends PureComponent {
 
     constructor(props) {
@@ -23,6 +49,7 @@ class MapContainer extends PureComponent {
             gpsData: {},
             latitude: LATITUDE,
             longitude: LONGITUDE,
+            driverRouteCoords: testData, 
             routeCoordinates: [],
             distanceTravelled: 0,
             prevLatLng: {},

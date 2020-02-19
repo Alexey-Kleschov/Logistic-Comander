@@ -5,7 +5,7 @@ import Header from './Header';
 class DriverHome extends Component {
 
     static navigationOptions = ({ navigation }) => ({
-        header:<Header title='Driver' navigation={navigation}/>
+        header: <Header title='Driver' navigation={navigation}/>
     });
 
     render() {
@@ -13,7 +13,7 @@ class DriverHome extends Component {
             <View style={styles.container}>
                 <Text style={styles.txt}>Driver Homepage</Text>
                 <View style={styles.btns}>
-                    <Button  title='Navigator' onPress={ () => console.log('Navigator pressed') }></Button>
+                    <Button title='Navigator' onPress={() => this.props.navigation.navigate('Navigator')}></Button>
                 </View>
                 <View style={styles.btns}>
                     <Button  title='Order List' onPress={() => this.props.navigation.navigate('DriverOrderList')}></Button>
@@ -22,6 +22,7 @@ class DriverHome extends Component {
         );
     }
 }
+
 export default DriverHome;
 
 const styles = StyleSheet.create({
