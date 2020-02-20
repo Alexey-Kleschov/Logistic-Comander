@@ -2,65 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b761b6b2-c0f6-4df9-837c-90e8c8b736ea" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/locationTracking/.buckconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/.eslintrc.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/.flowconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/.prettierrc.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/.watchmanconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/__tests__/App-test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/android/app/_BUCK" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/android/app/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/android/app/build_defs.bzl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/android/app/debug.keystore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/android/app/proguard-rules.pro" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/android/app/src/debug/AndroidManifest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/android/app/src/main/AndroidManifest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/android/app/src/main/java/com/locationtracking/MainActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/android/app/src/main/java/com/locationtracking/MainApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/android/app/src/main/res/values/strings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/android/app/src/main/res/values/styles.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/android/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/android/gradle.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/android/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/android/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/android/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/android/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/app.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/babel.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/ios/Podfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/ios/locationTracking-tvOS/Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/ios/locationTracking-tvOSTests/Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/ios/locationTracking.xcodeproj/project.pbxproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/ios/locationTracking.xcodeproj/xcshareddata/xcschemes/locationTracking-tvOS.xcscheme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/ios/locationTracking.xcodeproj/xcshareddata/xcschemes/locationTracking.xcscheme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/ios/locationTracking/AppDelegate.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/ios/locationTracking/AppDelegate.m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/ios/locationTracking/Base.lproj/LaunchScreen.xib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/ios/locationTracking/Images.xcassets/AppIcon.appiconset/Contents.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/ios/locationTracking/Images.xcassets/Contents.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/ios/locationTracking/Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/ios/locationTracking/main.m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/ios/locationTrackingTests/Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/ios/locationTrackingTests/locationTrackingTests.m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/metro.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/locationTracking/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/gen/com/lc/BuildConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/gen/com/lc/BuildConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/maps/MapNavigator.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/common/maps/MapNavigator.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/driverNavigator/leadNavigator/MapContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/driverNavigator/leadNavigator/MapContainer.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -70,7 +16,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -93,8 +39,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -111,7 +58,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
