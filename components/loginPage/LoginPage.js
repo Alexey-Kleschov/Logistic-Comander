@@ -37,7 +37,6 @@ class LoginPage extends Component {
     };
 
     render() {
-        console.log(this.props.service);
         return (
             <View style={styles.mainView}>
                 <Spinner

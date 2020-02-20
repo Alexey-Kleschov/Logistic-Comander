@@ -18,7 +18,7 @@ class DriverOrderList extends Component {
           ['', '', '', '']
         ]
     };
-
+    
     _alertIndex(index) {
         Alert.alert(`This is row ${index + 1}`);
     };
@@ -40,7 +40,6 @@ class DriverOrderList extends Component {
     render() {
 
         const state = this.state;
-
         return (
             <View style={styles.wrapper}>
                 <Text style={styles.txt}>Order list</Text>

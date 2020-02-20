@@ -1,5 +1,6 @@
 import React from 'react';
 import MapView, { Polyline, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import MapViewDirections from 'react-native-maps-directions';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 const MapNavigator = (props) => {
@@ -10,9 +11,14 @@ const MapNavigator = (props) => {
         routeCoordinates,
         distanceTravelled,
         coordinate,
-        changeMarker,
+        driverRouteCoordsData,
+        coords,
     } = props;
-    const speedKMH = parseFloat(speed) * 1000 / 3600;
+    
+    console.log(driverRouteCoordsData);
+    const origin = {latitude: 37.3822, longitude: -122.01};
+    const destination = {latitude: 37.2297, longitude: -121.786};
+    const GOOGLE_MAPS_APIKEY = 'AIzaSyCCqDJQC4lVsw4pDBHE9D7NbPnlLtqO4yE';
 
     return (
         <View>
@@ -30,14 +36,24 @@ const MapNavigator = (props) => {
                     }}
                     style={styles.map}
                 >
+                    {/* <MapViewDirections 
+                        origin={origin}
+                        destination={destination}
+                        apikey={GOOGLE_MAPS_APIKEY}
+                        strokeWidth={3}
+                        strokeColor="hotpink"
+                    /> */}
                     <Polyline
                         coordinates={routeCoordinates}
-                        strokeWidth={5}
+                        strokeWidth={2}
+                        strokeColor="#3474eb"
+                    />
+                    <Polyline 
+                        coordinates={coords}
+                        strokeWidth={10}
+                        strokeColor="#91cfff"
                     />
                     <Marker.Animated
-                        ref={marker => {
-                            changeMarker(marker)
-                        }}
                         coordinate={coordinate}
                     />
                 </MapView>
@@ -45,10 +61,10 @@ const MapNavigator = (props) => {
             <View style={styles.buttonContainer}>
                 <TouchableOpacity style={[styles.bubble, styles.button]}>
                     <Text style={styles.bottomBarContent}>
-                        {parseFloat(distanceTravelled).toFixed(2)} km
+                        Total path: {parseFloat(distanceTravelled).toFixed(2)} km
                     </Text>
                     <Text style={styles.bottomBarContent}>
-                        {speedKMH}km/h
+                        Speed: {speed} km/h
                     </Text>
                 </TouchableOpacity>
             </View>
