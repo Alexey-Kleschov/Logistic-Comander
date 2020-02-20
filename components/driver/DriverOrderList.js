@@ -33,7 +33,7 @@ class DriverOrderList extends Component {
                     fetchData[0].waybill.start.name, 
                     fetchData[0].waybill.finish.name
                 ]]
-            });
+            });            
         })();     
     }
 
