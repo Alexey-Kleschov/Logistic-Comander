@@ -3,7 +3,7 @@ import MapNavigator from '../../../common/maps/MapNavigator';
 import { Platform, Text } from 'react-native';
 import { AnimatedRegion } from 'react-native-maps'
 import haversine from 'haversine';
-// import getDirections from 'react-native-google-maps-directions'
+import polyline from '@mapbox/polyline';
 
 // For test
 const LATITUDE = 37.3822;
@@ -15,8 +15,6 @@ const LONG_DELTA = 0.001;
 /*
     GPS Navigator container component
 */
-
-
 const testData = {
     waybill: {
         arrivedPointId: 871,
@@ -41,9 +39,6 @@ const testData = {
     waybillId: 469,
 }
 
-function decode(t,e){for(var n,o,u=0,l=0,r=0,d= [],h=0,i=0,a=null,c=Math.pow(10,e||5);u<t.length;){a=null,h=0,i=0;do a=t.charCodeAt(u++)-63,i|=(31&a)<<h,h+=5;while(a>=32);n=1&i?~(i>>1):i>>1,h=i=0;do a=t.charCodeAt(u++)-63,i|=(31&a)<<h,h+=5;while(a>=32);o=1&i?~(i>>1):i>>1,l+=n,r+=o,d.push([l/c,r/c])}return d=d.map(function(t){return{latitude:t[0],longitude:t[1]}})}
-
-
 class MapContainer extends PureComponent {
 
     constructor(props) {
@@ -63,6 +58,7 @@ class MapContainer extends PureComponent {
                 latitudeDelta: 0,
                 longitudeDelta: 0
             }),
+            coords: []
         };
     }
     
@@ -102,10 +98,28 @@ class MapContainer extends PureComponent {
         longitude: this.state.longitude,
         latitudeDelta: LATT_DELTA,
         longitudeDelta: LONG_DELTA
-      });
+    });
+
+    async fetchRoute() {
+        // For test
+        const origin = '37.3822,-122.01';
+        const destination = '37.2297,-121.786';
+        const APIKEY = 'AIzaSyCOE23d0Sf1mfSLT43SOlLpLRzpBhhSH7A';
+        const url = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&key=${APIKEY}`;
+
+        try {
+            const resp = await fetch(url);
+            const respJson = await resp.json();
+            let points = polyline.decode(respJson.routes[0].overview_polyline.points);
+            let coords = points.map((point, index) => ({ latitude: point[0], longitude: point[1] }))
+            this.setState({ coords })
+        } catch (e) {
+            console.warn(e);
+        }
+    }
 
     componentDidMount() {
-        const { start, finish } = this.state.driverRouteCoordsData.waybill
+        this.fetchRoute()
         const options = { 
             enableHighAccuracy: true, 
             timeout: 20000, 
@@ -114,37 +128,6 @@ class MapContainer extends PureComponent {
         };
         
         this.watchId = navigator.geolocation.watchPosition(this.geoResolve, this.geoReject, options);
-
-        const mode = 'driving'; // 'walking';
-        const origin = '37.3822,-122.01';
-        const destination = '37.2297,-121.786';
-        const APIKEY = 'AIzaSyCCqDJQC4lVsw4pDBHE9D7NbPnlLtqO4yE';
-        // const url = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&key=${APIKEY}&mode=${mode}`;
-        const url = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&key=${APIKEY}`;
-
-        fetch(url)
-            .then(response => response.json())
-            .then(responseJson => {
-                console.log(responseJson);
-                
-                if (responseJson.routes.length) {
-                    this.setState({
-                        coords: decode(responseJson.routes[0].overview_polyline.points)
-                    });
-                }
-            }).catch(e => {console.warn(e)});
-        // this.setState({
-        //     driverRouteCoordsData: [
-        //         {
-        //             "latitude": start.latitude,
-        //             "longitude": start.longitude,
-        //         },
-        //         {
-        //             "latitude": finish.latitude,
-        //             "longitude": finish.longitude,
-        //         }
-        //     ]
-        // })
     };
 
     componentWillUnmount() {

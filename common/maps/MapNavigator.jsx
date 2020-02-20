@@ -1,24 +1,16 @@
 import React from 'react';
 import MapView, { Polyline, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
-import MapViewDirections from 'react-native-maps-directions';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 const MapNavigator = (props) => {
     const { 
         speed, 
         latitude, 
-        longitude, 
-        routeCoordinates,
+        longitude,
         distanceTravelled,
         coordinate,
-        driverRouteCoordsData,
         coords,
     } = props;
-    
-    console.log(driverRouteCoordsData);
-    const origin = {latitude: 37.3822, longitude: -122.01};
-    const destination = {latitude: 37.2297, longitude: -121.786};
-    const GOOGLE_MAPS_APIKEY = 'AIzaSyCCqDJQC4lVsw4pDBHE9D7NbPnlLtqO4yE';
 
     return (
         <View>
@@ -36,18 +28,6 @@ const MapNavigator = (props) => {
                     }}
                     style={styles.map}
                 >
-                    {/* <MapViewDirections 
-                        origin={origin}
-                        destination={destination}
-                        apikey={GOOGLE_MAPS_APIKEY}
-                        strokeWidth={3}
-                        strokeColor="hotpink"
-                    /> */}
-                    <Polyline
-                        coordinates={routeCoordinates}
-                        strokeWidth={2}
-                        strokeColor="#3474eb"
-                    />
                     <Polyline 
                         coordinates={coords}
                         strokeWidth={10}
