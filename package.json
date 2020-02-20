@@ -31,6 +31,7 @@
     "react-native-maps-directions": "^1.7.3",
     "react-native-material-dropdown": "^0.11.1",
     "react-native-open-map": "^3.0.0",
+    "react-native-qrcode-scanner-view": "^2.0.0",
     "react-native-reanimated": "~1.4.0",
     "react-native-router-flux": "^4.0.6",
     "react-native-safe-area-context": "^0.6.0",
