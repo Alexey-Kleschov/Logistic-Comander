@@ -8,9 +8,9 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 import Header from "./Header";
 
 class LoginPage extends Component {
-    static navigationOptions = {
-        header:<Header title='LOGIN'/>
-    };
+    static navigationOptions = ({ navigation }) => ({
+        header:<Header title='LOGIN' navigation={navigation}/>
+    });
 
     state = {
         email: '',

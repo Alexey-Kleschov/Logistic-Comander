@@ -14,7 +14,8 @@ import { connect } from "react-redux";
 import BarcodeService from "../../src/services/http/barCode-service";
 import { scannerAction, scannerResetAction } from "../../actions/scannerAction";
 import ScanResponceContainer from "../../components/scaner/responceComponents/ScanResponceContainer";
-import ErrorAlert from '../../common/alerts/ErrAlert'
+import ErrorAlert from '../../common/alerts/ErrAlert';
+import { Header } from 'react-native-elements';
 
 class ScannerScreen extends Component {
 

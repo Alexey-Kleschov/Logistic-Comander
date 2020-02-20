@@ -4,6 +4,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 
 import DriverHome from '../../../components/driver/DriverHome';
 import DriverOrderList from '../../../components/driver/DriverOrderList';
+import LoginPage from '../../../components/loginPage/LoginPage';
 
 const AppNavigator = createStackNavigator({
     DriverHome: {
@@ -11,7 +12,10 @@ const AppNavigator = createStackNavigator({
     },
     DriverOrderList: {
         screen: DriverOrderList
-    }
+    },
+    Login: {
+        screen: LoginPage,
+    },
 });
 
 export default createAppContainer(AppNavigator);

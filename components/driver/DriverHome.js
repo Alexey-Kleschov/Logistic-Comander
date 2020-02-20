@@ -5,7 +5,7 @@ import Header from './Header';
 class DriverHome extends Component {
 
     static navigationOptions = ({ navigation }) => ({
-        header:<Header title='Driver' navigation={navigation}/>
+        header:<Header title='Driver' navigation={navigation} />
     });
 
     render() {
