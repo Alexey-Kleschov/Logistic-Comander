@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b761b6b2-c0f6-4df9-837c-90e8c8b736ea" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/gen/com/lc/BuildConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/gen/com/lc/BuildConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/maps/MapNavigator.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/common/maps/MapNavigator.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/driverNavigator/leadNavigator/MapContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/driverNavigator/leadNavigator/MapContainer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/driverNavigator/leadNavigator/LeadNavigator.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/driverNavigator/leadNavigator/LeadNavigator.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -39,9 +38,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -58,6 +56,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
