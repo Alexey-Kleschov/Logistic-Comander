@@ -13,7 +13,7 @@ let data = [{
 
 class Service extends Component {
     static navigationOptions = {
-        header:null
+        headerShown: false
     };
 
     state = {

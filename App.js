@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
 import * as Font from 'expo-font'
 import { AppLoading } from 'expo'
+import { Provider } from 'react-redux';
+import { YellowBox } from 'react-native';
 import store from './store';
-import {Provider} from 'react-redux';
 import Routing from './src/routing/SecurityRoute';
+
+YellowBox.ignoreWarnings(['Warning: ReactNative.createElement']);
+console.disableYellowBox = true;
 
 async function loadApplication() {
     await Font.loadAsync({
