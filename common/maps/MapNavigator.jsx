@@ -12,6 +12,8 @@ const MapNavigator = (props) => {
         coords,
     } = props;
 
+    this.mapRef.animateCamera({center: temp_cordinate,pitch: 2, heading: 20,altitude: 200, zoom: 40},duration)
+
     return (
         <View>
             <View style={styles.mapContainer}>

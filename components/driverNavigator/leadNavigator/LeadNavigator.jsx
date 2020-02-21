@@ -4,21 +4,28 @@ import MapContainer from './MapContainer';
 import * as Location from 'expo-location';
 
 class LeadNavigator extends Component {
+    state = {
+        isPermit: true
+    }
+
+    setPermitionStatus = (isPermit) => {
+        this.setState({ isPermit });
+    }
 
     componentDidMount() {
         (async () => {
-            const resp = await Location.requestPermissionsAsync();
-            if(resp === 'android') {
-                console.log(resp);
-                
+            const permRes = await Location.requestPermissionsAsync();
+            
+            if(permRes.scope === 'fine') {
+                this.setPermitionStatus(true)
             } else {
-                console.log(resp);
+                this.setPermitionStatus(false)
             }
         })()
     };
 
     render() {
-        return (
+        return this.state.isPermit && (
             <View>
                 <MapContainer />
             </View>
