@@ -19,6 +19,7 @@ class LeadNavigator extends PureComponent {
     
     componentDidMount() {
         this.requestPermissions()
+        console.log('NAV_PROPS_COORDS',this.props.navigation.state.params);
     };
 
     render() {
