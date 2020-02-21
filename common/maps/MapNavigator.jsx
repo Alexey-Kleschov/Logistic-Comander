@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import MapView, { Polyline, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
@@ -17,9 +17,11 @@ const MapNavigator = (props) => {
             <View style={styles.mapContainer}>
                 <MapView
                     showsUserLocation
-                    followsUserLocation
+                    tracksViewChanges
+                    followsUserLocation={false}
                     provider={PROVIDER_GOOGLE}
                     loadingEnabled
+                    showsTraffic
                     region={{
                         latitude,
                         longitude,
@@ -88,4 +90,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default MapNavigator;
+export default memo(MapNavigator);
