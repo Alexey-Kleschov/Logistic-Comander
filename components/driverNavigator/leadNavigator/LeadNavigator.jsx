@@ -1,36 +1,36 @@
-import React, { Component } from 'react';
-import { View } from 'react-native';
+import React, { PureComponent } from 'react';
 import MapContainer from './MapContainer';
+import NoPermitAlert from '../../../common/alerts/ErrAlert';
 import * as Location from 'expo-location';
 
-class LeadNavigator extends Component {
-    state = {
-        isPermit: true
+class LeadNavigator extends PureComponent {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            isPermit: null
+        }
     }
 
-    setPermitionStatus = (isPermit) => {
-        this.setState({ isPermit });
+    async requestPermissions() {
+        const permRes = await Location.requestPermissionsAsync();
+        this.setState({ isPermit: permRes.granted });
     }
-
+    
     componentDidMount() {
-        (async () => {
-            const permRes = await Location.requestPermissionsAsync();
-            
-            if(permRes.scope === 'fine') {
-                this.setPermitionStatus(true)
-            } else {
-                this.setPermitionStatus(false)
-            }
-        })()
+        this.requestPermissions()
     };
 
     render() {
-        return this.state.isPermit && (
-            <View>
-                <MapContainer />
-            </View>
-        )
-    }
+        if(this.state.isPermit === true) {
+            return <MapContainer driverLeadCoords={this.props.driverLeadCoords}/>
+        } else if (this.state.isPermit === false) {
+            return <NoPermitAlert errMsg="You unabled location permissions for this app."/>
+        } else {
+            return null
+        }
+            
+    };
 };
 
 export default LeadNavigator;

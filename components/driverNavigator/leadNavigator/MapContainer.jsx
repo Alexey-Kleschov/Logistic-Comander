@@ -72,6 +72,7 @@ class MapContainer extends PureComponent {
                 .map(point => ({ latitude: point[0], longitude: point[1] }))
 
             this.setState({ coords })
+            
         } catch (e) {
             console.warn(e);
         }
