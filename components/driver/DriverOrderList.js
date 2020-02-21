@@ -18,14 +18,16 @@ class DriverOrderList extends Component {
           ['', '', '', '']
         ]
     };
-    
-    _alertIndex(index) {
-        Alert.alert(`This is row ${index + 1}`);
-    };
+
+    driverLeadCoords;     
 
     componentDidMount() {
         (async () => {
-           const fetchData = await getDriverOrders(this.props.token, 195);
+            const fetchData = await getDriverOrders(this.props.token, 195);
+            this.driverLeadCoords = {
+                start: `${fetchData[0].waybill.start.latitude}, ${fetchData[0].waybill.start.longitude}`,
+                finish: `${fetchData[0].waybill.finish.latitude}, ${fetchData[0].waybill.finish.longitude}`
+            };           
             this.setState({
                 tableData: [[
                     fetchData[0].waybill.arrivedPointId, 
@@ -37,9 +39,8 @@ class DriverOrderList extends Component {
         })();     
     }
 
-    render() {
-
-        const state = this.state;
+    render() {        
+        const state = this.state;   
         return (
             <View style={styles.wrapper}>
                 <Text style={styles.txt}>Order list</Text>
@@ -51,7 +52,7 @@ class DriverOrderList extends Component {
                             <TableWrapper key={index} style={styles.row}>
                                 {
                                 rowData.map((cellData, cellIndex) => (
-                                    <Cell key={cellIndex} data={cellData} textStyle={styles.text} onPress={() => this._alertIndex(index)}/>
+                                    <Cell key={cellIndex} data={cellData} textStyle={styles.text} onPress={() => this.props.navigation.navigate('Navigator', this.driverLeadCoords)}/>
                                 ))
                                 }
                             </TableWrapper>
