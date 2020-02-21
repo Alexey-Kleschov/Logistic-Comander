@@ -19,12 +19,11 @@ class LeadNavigator extends PureComponent {
     
     componentDidMount() {
         this.requestPermissions()
-        console.log('NAV_PROPS_COORDS',this.props.navigation.state.params);
     };
 
     render() {
         if(this.state.isPermit === true) {
-            return <MapContainer driverLeadCoords={this.props.driverLeadCoords}/>
+            return <MapContainer driverLeadCoords={this.props.navigation.state.params}/>
         } else if (this.state.isPermit === false) {
             return <NoPermitAlert errMsg="You unabled location permissions for this app."/>
         } else {
