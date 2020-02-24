@@ -32,8 +32,9 @@ const MapNavigator = (props) => {
                 >
                     <Polyline 
                         coordinates={coords}
-                        strokeWidth={10}
-                        strokeColor="#91cfff"
+                        strokeWidth={15}
+                        strokeColor="yellow"
+                        style={{zIndex: 999}}
                     />
                     <Marker.Animated
                         coordinate={coordinate}
