@@ -8,7 +8,7 @@ import polyline from '@mapbox/polyline';
 const options = { 
     enableHighAccuracy: true, 
     timeout: 20000, 
-    maximumAge: 1000,
+    maximumAge: 10000,
     distanceFilter: 10
 };
 
@@ -34,6 +34,7 @@ class MapContainer extends PureComponent {
                 longitudeDelta: 0,
             }),
             coords: [],
+            lastSpeed: 0
         };
     }
     
@@ -41,9 +42,8 @@ class MapContainer extends PureComponent {
     
     geoResolve = (data) => {
         const { routeCoordinates, distanceTravelled } = this.state;
-        const { latitude, longitude } = data.coords;
+        const { latitude, longitude, speed } = data.coords;
         const newCoordinate = { latitude, longitude };
-        
         this.setState({
             gpsData: data,
             latitude,
@@ -51,6 +51,7 @@ class MapContainer extends PureComponent {
             routeCoordinates: routeCoordinates.concat([newCoordinate]),
             distanceTravelled: distanceTravelled + this.calcDistance(newCoordinate),
             prevLatLng: newCoordinate,
+            lastSpeed: (speed > 0) ? speed : this.state.lastSpeed
         });
     }
 
@@ -88,13 +89,14 @@ class MapContainer extends PureComponent {
     }
     
     render() {
-        const speed = this.state.gpsData?.coords && Math.round(this.state.gpsData.coords.speed)
+        const speed = Math.round(this.state.lastSpeed)
+        
         const mapProps = {
-            speed: speed || 0, 
+            speed: speed, 
             latitude: this.state.latitude, 
             longitude: this.state.longitude, 
             routeCoordinates: this.state.routeCoordinates,
-            distanceTravelled: this.state.distanceTravelled,
+            distanceTravelled: parseFloat(this.state.distanceTravelled).toFixed(2),
             coordinate: this.state.coordinate,
             coords: this.state.coords
         }
