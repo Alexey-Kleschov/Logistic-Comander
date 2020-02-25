@@ -8,6 +8,10 @@ class DriverHome extends Component {
         header: <Header title='Driver' navigation={navigation}/>
     });
 
+    navigateTo = (targetScreen) => {
+        this.props.navigation.navigate(targetScreen)
+    }
+
     render() {
         return (
             <View style={styles.driverHome__container}>
@@ -15,10 +19,10 @@ class DriverHome extends Component {
                 <Text style={styles.txt}>DRIVER HOMEPAGE</Text>
                 <View style={styles.buttonGroup__container}>
                     <View style={styles.buttonGroup}>
-                        <Button title='Navigator' color="#292f45" onPress={() => this.props.navigation.navigate('Navigator')}></Button>
+                        <Button title='Navigator' color="#292f45" onPress={() => this.navigateTo('Navigator')} />
                     </View>
                     <View style={styles.buttonGroup}>
-                        <Button title='Order List' color="#292f45" onPress={() => this.props.navigation.navigate('DriverOrderList')}></Button>
+                        <Button title='Order List' color="#292f45" onPress={() => this.navigateTo('DriverOrderList')} />
                     </View>
                 </View>
             </View>
