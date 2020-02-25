@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
-import Header from './Header';
+import NavHeader from '../../common/headers/NavHeader';
 
 class DriverHome extends Component {
 
     static navigationOptions = ({ navigation }) => ({
-        header: <Header title='Driver' navigation={navigation}/>
+        header: <NavHeader navigation={navigation}/>
     });
 
     navigateTo = (targetScreen) => {

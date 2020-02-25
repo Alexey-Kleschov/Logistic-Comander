@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Text, View, StyleSheet, ActivityIndicator } from 'react-native';
 import { Table, Row } from 'react-native-table-component';
 import { getDriverOrders } from '../../src/services/http/driverData-service';
-import Header from './Header';
+import NavHeader from '../../common/headers/NavHeader';
 import moment from 'moment';
 import List from './List';
 
@@ -22,7 +22,7 @@ class DriverOrderList extends Component {
     }
 
     static navigationOptions = ({ navigation }) => ({
-        header: <Header title='Driver' navigation={navigation}/>
+        header: <NavHeader navigation={navigation}/>
     });  
 
     componentDidMount() {

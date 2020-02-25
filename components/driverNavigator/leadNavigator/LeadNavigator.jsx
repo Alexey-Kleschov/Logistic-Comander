@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import MapContainer from './MapContainer';
 import NoPermitAlert from '../../../common/alerts/ErrAlert';
 import * as Location from 'expo-location';
+import NavHeader from '../../../common/headers/NavHeader'
 
 class LeadNavigator extends PureComponent {
     constructor(props) {
@@ -11,6 +12,10 @@ class LeadNavigator extends PureComponent {
             isPermit: null
         }
     }
+
+    static navigationOptions = ({ navigation }) => ({
+        header: <NavHeader title='Navigator' navigation={navigation}/>
+    });
 
     async requestPermissions() {
         const permRes = await Location.requestPermissionsAsync();
