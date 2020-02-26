@@ -12,7 +12,7 @@ class Head extends Component {
                 <Header
                     leftComponent={<Icon name='arrow-back' color='#f5f5f5' onPress={() => {
                         if(this.props.navigation.state.routeName === 'DriverHome'){
-                            this.props.navigation.navigate('LoginPage');
+                            this.props.navigation.navigate('Service');
                             this.props.logoutUser();
                         } else this.props.navigation.goBack()                        
                     }}/> }

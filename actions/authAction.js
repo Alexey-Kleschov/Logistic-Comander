@@ -1,7 +1,9 @@
 import axios from 'axios';
+import { AsyncStorage } from 'react-native';
 import {CURRENT_USER, ERRORS, SERVICE} from './types';
 import jwt_decode from 'jwt-decode';
 import { warehouseConfig, cargoConfig } from '../serverConfig';
+import SecurityRoute from '../src/routing/SecurityRoute';
 
 export const setCurrentUser = (decoded, token) => {
     return {
@@ -15,10 +17,15 @@ export const loginUser = (user, spinner, service = '') => dispatch => {
     const URL = !service ? warehouseConfig : cargoConfig;
     axios
         .post(`${URL}login`, user)
-        .then(res => {
+        .then(async res => {
             const {token} = res.data;
-            console.log(token);
             const decoded = jwt_decode(token);
+            let role;
+            role = await AsyncStorage.getItem('role');
+            console.log('LOGIN before', role);                      
+            await AsyncStorage.setItem('role', decoded.role);
+            role = await AsyncStorage.getItem('role');
+            console.log('LOGIN after', role);                        
             dispatch(setCurrentUser(decoded, token));
         })
         .then(() => { 
@@ -39,10 +46,11 @@ export const loginUser = (user, spinner, service = '') => dispatch => {
         });
 };
 
-export const logoutUser = () => dispatch => {
+export const logoutUser = () => async dispatch => {
+    await AsyncStorage.setItem('role', '');
     dispatch(setCurrentUser({}))
     dispatch({
         type: ERRORS,
         payload: {}
-    })
+    });
 }

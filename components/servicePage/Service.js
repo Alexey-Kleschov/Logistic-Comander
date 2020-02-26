@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Dropdown} from 'react-native-material-dropdown';
-import {StyleSheet, View} from "react-native";
-import {Button, Input, Text} from "react-native-elements";
+import {StyleSheet, View } from "react-native";
+import {Button, Text} from "react-native-elements";
 import {connect} from "react-redux";
 import {setService} from "../../actions/serviceAction";
 
@@ -12,16 +12,22 @@ let data = [{
 }];
 
 class Service extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            service: 'Warehousing',
+            isLogged: '',
+            currentRole: ''
+        };
+    };
+
     static navigationOptions = {
         headerShown: false
     };
 
-    state = {
-        service: 'Warehousing'
-    }
-
     componentDidMount() {
-        this.handleSetService()
+        this.handleSetService();
     }
 
     handleSetService = () => {
