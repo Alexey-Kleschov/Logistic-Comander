@@ -11,6 +11,7 @@ const MapNavigator = (props) => {
         distanceTravelled,
         coordinate,
         coords,
+        coordsToPath,
     } = props;
 
     return (
@@ -40,6 +41,12 @@ const MapNavigator = (props) => {
                         coordinates={coords}
                         strokeWidth={5}
                         strokeColor="lightblue"
+                        style={{zIndex: 999}}
+                    />
+                    <Polyline 
+                        coordinates={coordsToPath}
+                        strokeWidth={3}
+                        strokeColor="orange"
                         style={{zIndex: 999}}
                     />
                     <Marker.Animated
