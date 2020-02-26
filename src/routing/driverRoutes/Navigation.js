@@ -6,6 +6,7 @@ import DriverHome from '../../../components/driver/DriverHome';
 import DriverOrderList from '../../../components/driver/DriverOrderList';
 import Navigator from '../../../components/driverNavigator/leadNavigator/LeadNavigator'
 import LoginPage from '../../../components/loginPage/LoginPage';
+import Service from '../../../components/servicePage/Service';
 
 const AppNavigator = createStackNavigator({
     DriverHome: {
@@ -20,6 +21,9 @@ const AppNavigator = createStackNavigator({
     Login: {
         screen: LoginPage,
     },
+    Service: {
+        screen: Service
+    }
 });
 
 export default createAppContainer(AppNavigator);

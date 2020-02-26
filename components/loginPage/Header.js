@@ -3,9 +3,7 @@ import {Header} from "react-native-elements";
 import {Icon} from "react-native-elements";
 
 export default class Head extends Component {
-    render() {
-        console.log(this.props.navigation);
-        
+    render() {        
         return (
             <>
                 <Header
