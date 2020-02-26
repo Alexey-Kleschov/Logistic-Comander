@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import MapView, { Polyline, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import DataBarItem from './DataBarItem';
 
 const MapNavigator = (props) => {
     const { 
@@ -13,52 +14,58 @@ const MapNavigator = (props) => {
     } = props;
 
     return (
-        <View>
+        <View style={styles.mapEnv}>
+            {/* Map */}
             <View style={styles.mapContainer}>
                 <MapView
                     showsUserLocation
                     tracksViewChanges
-                    followsUserLocation={false}
+                    followsUserLocation
                     provider={PROVIDER_GOOGLE}
                     loadingEnabled
-                    showsTraffic
+                    showsIndoors
+                    showsBuildings
+                    zoomEnabled
+                    showsCompass
+                    showsMyLocationButton
                     region={{
                         latitude,
                         longitude,
-                        latitudeDelta: 0.009,
-                        longitudeDelta: 0.009,
+                        latitudeDelta: 0.01,
+                        longitudeDelta: 0.01,
                     }}
                     style={styles.map}
                 >
                     <Polyline 
                         coordinates={coords}
-                        strokeWidth={10}
-                        strokeColor="#91cfff"
+                        strokeWidth={5}
+                        strokeColor="lightblue"
+                        style={{zIndex: 999}}
                     />
                     <Marker.Animated
                         coordinate={coordinate}
                     />
                 </MapView>
             </View>
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity style={[styles.bubble, styles.button]}>
-                    <Text style={styles.bottomBarContent}>
-                        Total path: {parseFloat(distanceTravelled).toFixed(2)} km
-                    </Text>
-                    <Text style={styles.bottomBarContent}>
-                        Speed: {speed} km/h
-                    </Text>
-                </TouchableOpacity>
+            {/* Data bar  */}
+            <View style={styles.bottomDataBar__container}>
+                <DataBarItem title='Distance' value={distanceTravelled} unit='km' />
+                <DataBarItem title={'Speed'} value={speed} unit='km/h' />
             </View>
         </View>
     )
 };
 
 const styles = StyleSheet.create({
+    mapEnv: {
+        height: '100%',
+        width: '100%',
+        ...StyleSheet.absoluteFillObject
+    },
     mapContainer: {
         ...StyleSheet.absoluteFillObject,
-        height: 400,
-        width: 400,
+        height: '100%',
+        width: '100%',
         flex: 1,
         justifyContent: 'flex-end',
         alignItems: 'center',
@@ -66,28 +73,18 @@ const styles = StyleSheet.create({
     map: {
         ...StyleSheet.absoluteFillObject,
     },
-    bubble: {
-        flex: 1,
-        backgroundColor: "rgba(255,255,255,0.7)",
-        paddingHorizontal: 18,
-        paddingVertical: 12,
-        borderRadius: 20
-      },
-    latlng: {
-        width: 200,
-        alignItems: "stretch"
-    },
-    button: {
-        width: 80,
-        paddingHorizontal: 12,
-        alignItems: "center",
-        marginHorizontal: 10
-    },
-    buttonContainer: {
+    bottomDataBar__container: {
+        width: '100%',
+        position: 'absolute',
+        bottom: 0,
         flexDirection: "row",
-        marginVertical: 20,
-        backgroundColor: "transparent"
-    }
+        backgroundColor: '#292f45',
+        borderTopWidth: 2,
+        borderTopColor: '#202536',
+        paddingHorizontal: 60,
+        paddingTop: 10,
+        justifyContent: 'space-between'
+    },
 });
 
 export default memo(MapNavigator);
