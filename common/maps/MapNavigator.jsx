@@ -57,7 +57,7 @@ const MapNavigator = (props) => {
             {/* Data bar  */}
             <View style={styles.bottomDataBar__container}>
                 <DataBarItem title='Distance' value={distanceTravelled} unit='km' />
-                <DataBarItem title={'Speed'} value={speed} unit='km/h' />
+                <DataBarItem title='Speed' value={speed} unit='km/h' />
             </View>
         </View>
     )
