@@ -20,12 +20,8 @@ export const loginUser = (user, spinner, service = '') => dispatch => {
         .then(async res => {
             const {token} = res.data;
             const decoded = jwt_decode(token);
-            let role;
-            role = await AsyncStorage.getItem('role');
-            console.log('LOGIN before', role);                      
             await AsyncStorage.setItem('role', decoded.role);
-            role = await AsyncStorage.getItem('role');
-            console.log('LOGIN after', role);                        
+            await AsyncStorage.setItem('token', token);
             dispatch(setCurrentUser(decoded, token));
         })
         .then(() => { 

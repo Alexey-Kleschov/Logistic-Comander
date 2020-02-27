@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Text, View, StyleSheet, ActivityIndicator } from 'react-native';
+import { Text, View, StyleSheet, ActivityIndicator, AsyncStorage } from 'react-native';
 import { Table, Row } from 'react-native-table-component';
 import { getDriverOrders } from '../../src/services/http/driverData-service';
 import NavHeader from '../../common/headers/NavHeader';
@@ -27,7 +27,8 @@ class DriverOrderList extends Component {
 
     componentDidMount() {
         (async () => {
-            const fetchData = await getDriverOrders(this.props.token, 195);
+            const token = await AsyncStorage.getItem('token');
+            const fetchData = await getDriverOrders(token, 195);
             const { start, finish, arrivedPointId, date } = fetchData[0].waybill
             const driverLeadCoords = {
                 start: `${start.latitude}, ${start.longitude}`,
