@@ -7,7 +7,7 @@ import { logoutUser } from '../../actions/authAction';
 class NavHeader extends Component {   
     navigate = () => {
         if(this.props.navigation.state.routeName === 'DriverHome'){
-            this.props.navigation.navigate('LoginPage');
+            this.props.navigation.navigate('Service');
             this.props.logoutUser();
         } else {
             this.props.navigation.goBack();

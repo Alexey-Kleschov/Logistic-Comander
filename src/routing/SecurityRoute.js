@@ -23,19 +23,14 @@ class SecurityRoute extends Component {
     }
 
     render() { 
-                               
-        if (this.props.auth.isAuthenticated) {
-            switch (this.props.auth.user.role) {
-                case 'employee':
-                    return (<OperatorNavigation/>);
-                case 'companyAdmin':
-                    return (<CompanyAdminNavigation/>);
-                case 'driver':
-                    return (<DriverNavigation/>);
-            };
-        };  
-            
-        switch (this.state.userRole) {
+
+        let routerKey;
+
+        if(this.props.auth.isAuthenticated){
+            routerKey = this.props.auth.user.role;
+        } else routerKey = this.state.userRole;                            
+
+        switch (routerKey) {
             case 'employee':
                 return (<OperatorNavigation/>); 
             case 'companyAdmin':
