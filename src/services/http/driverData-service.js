@@ -14,6 +14,7 @@ export const getDriverOrders = (token, id) => {
             .then( res => {
                 resolve(res.data);
             })
+            .catch(err => console.log(err))
     });
 
 }; 

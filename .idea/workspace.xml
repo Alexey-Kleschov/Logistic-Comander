@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b761b6b2-c0f6-4df9-837c-90e8c8b736ea" name="Default Changelist" comment="" />
+    <list default="true" id="b761b6b2-c0f6-4df9-837c-90e8c8b736ea" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/components/driverNavigator/leadNavigator/LeadNavigator.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/driverNavigator/leadNavigator/LeadNavigator.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/driverNavigator/leadNavigator/MapContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/driverNavigator/leadNavigator/MapContainer.jsx" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,6 +36,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -49,9 +53,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
