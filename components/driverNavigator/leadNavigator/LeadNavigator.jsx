@@ -33,8 +33,7 @@ class LeadNavigator extends PureComponent {
             return <NoPermitAlert errMsg="You unabled location permissions for this app."/>
         } else {
             return null
-        }
-            
+        }  
     };
 };
 

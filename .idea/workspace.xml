@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b761b6b2-c0f6-4df9-837c-90e8c8b736ea" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/components/driver/DriverHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/driver/DriverHome.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/driver/DriverOrderList.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/driver/DriverOrderList.js" afterDir="false" />
-    </list>
+    <list default="true" id="b761b6b2-c0f6-4df9-837c-90e8c8b736ea" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,9 +33,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="ProjectPane" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -55,6 +49,9 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
