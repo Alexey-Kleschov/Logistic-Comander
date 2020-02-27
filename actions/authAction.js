@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { AsyncStorage } from 'react-native';
-import {CURRENT_USER, ERRORS, SERVICE} from './types';
+import {CURRENT_USER, ERRORS } from './types';
 import jwt_decode from 'jwt-decode';
 import { warehouseConfig, cargoConfig } from '../serverConfig';
-import SecurityRoute from '../src/routing/SecurityRoute';
 
 export const setCurrentUser = (decoded, token) => {
+    
     return {
         type: CURRENT_USER,
         payload: decoded,
@@ -17,11 +17,11 @@ export const loginUser = (user, spinner, service = '') => dispatch => {
     const URL = !service ? warehouseConfig : cargoConfig;
     axios
         .post(`${URL}login`, user)
-        .then(async res => {
+        .then( async res => {
             const {token} = res.data;
             const decoded = jwt_decode(token);
-            await AsyncStorage.setItem('role', decoded.role);
-            await AsyncStorage.setItem('token', token);
+            await AsyncStorage.setItem('role', decoded.role); 
+            await AsyncStorage.setItem('token', token);    
             dispatch(setCurrentUser(decoded, token));
         })
         .then(() => { 

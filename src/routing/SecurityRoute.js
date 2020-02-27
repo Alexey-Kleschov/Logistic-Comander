@@ -10,36 +10,40 @@ class SecurityRoute extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userRole: '' 
+            userRole: 'none' 
         };  
         this.componentDidMount = this.componentDidMount.bind(this);
     };    
 
-    componentDidMount() {
+    componentDidMount() {        
         (async () => {
             const userRole = await AsyncStorage.getItem('role');
             this.setState({ userRole });
         })();
     }
 
-    render() { 
-
-        let routerKey;
-
-        if(this.props.auth.isAuthenticated){
-            routerKey = this.props.auth.user.role;
-        } else routerKey = this.state.userRole;                            
-
-        switch (routerKey) {
-            case 'employee':
-                return (<OperatorNavigation/>); 
-            case 'companyAdmin':
-                return (<CompanyAdminNavigation/>);
-            case 'driver':
-                return (<DriverNavigation/>);
-            default: return (<LoginNavigation/>);  
-        };
-              
+    render() {
+        if (this.props.auth.isAuthenticated) {
+            switch (this.props.auth.user.role) { 
+                case 'employee':
+                    return (<OperatorNavigation/>);
+                case 'companyAdmin':
+                    return (<CompanyAdminNavigation/>);
+                case 'driver':
+                    return (<DriverNavigation/>); 
+            };
+        } else  {            
+            switch (this.state.userRole) {            
+                case 'employee': 
+                    return (<OperatorNavigation/>); 
+                case 'companyAdmin':
+                    return (<CompanyAdminNavigation/>);
+                case 'driver': {
+                    return (<DriverNavigation/>);
+                };
+                default: return (<LoginNavigation/>);  
+            };
+        }
     };
 }
 

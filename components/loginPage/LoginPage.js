@@ -32,8 +32,7 @@ class LoginPage extends Component {
         
         if(this.props.service === 'Express Cargo') {
             this.props.loginUser(user, spinner, this.props.service);
-        }
-        this.props.loginUser(user, spinner);
+        } else this.props.loginUser(user, spinner);
     };
 
     render() {
