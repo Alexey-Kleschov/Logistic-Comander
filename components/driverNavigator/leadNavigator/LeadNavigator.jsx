@@ -26,26 +26,24 @@ class LeadNavigator extends PureComponent {
 
     async setDriverPath() {
         const pathData = this.props.navigation.state.params;
-        
         if(pathData) {
-            console.log(1,pathData);
-            
-            await AsyncStorage.setItem('driverPath', pathData);
+            const stringifiedPathData = JSON.stringify(pathData);
+            await AsyncStorage.setItem('driverPath', stringifiedPathData);
         }
     }
     
     componentDidMount() {
-        this.requestPermissions();
         this.setDriverPath();
+        this.requestPermissions();
     };
 
     render() {
         if(this.state.isPermit === true) {
-            return <MapContainer />
+            return <MapContainer />;
         } else if (this.state.isPermit === false) {
-            return <NoPermitAlert errMsg="You unabled location permissions for this app."/>
+            return <NoPermitAlert errMsg="You unabled location permissions for this app."/>;
         } else {
-            return null
+            return null;
         }  
     };
 };

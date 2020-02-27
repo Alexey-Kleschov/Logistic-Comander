@@ -69,7 +69,7 @@ class MapContainer extends PureComponent {
         console.log(err.code, err.message);
     }
 
-    setDriverPath = () => {
+    setDriverPath = (start, finish) => {
         this.fetchRoad(start, finish)
         .then(driverLeadCoords => this.setState({coords: driverLeadCoords}));
     }
@@ -83,12 +83,14 @@ class MapContainer extends PureComponent {
     }
 
     setCoordsToMainPath = (driverPathFromStorage) => {
-        const { initialGpsData, coordsToPath } = this.state;
+        if (driverPathFromStorage) {
+            const { initialGpsData, coordsToPath } = this.state;
 
-        if(initialGpsData && coordsToPath.length === 0) {
-            this
-            .fetchRoad(initialGpsData, driverPathFromStorage.start)
-            .then(leadToMainPath => this.setState({coordsToPath: leadToMainPath}));
+            if(initialGpsData && coordsToPath.length === 0) {
+                this
+                .fetchRoad(initialGpsData, driverPathFromStorage.start)
+                .then(leadToMainPath => this.setState({coordsToPath: leadToMainPath}));
+            }
         }
     }
 
@@ -122,23 +124,20 @@ class MapContainer extends PureComponent {
         }
     }
 
-    async getDriverPathFromStorage() {
-        return await AsyncStorage.getItem('driverPath');
+    getDriverPathFromStorage = (cb) => {
+        (async() => {
+            const driverPathFromStorage = await AsyncStorage.getItem('driverPath');
+            const parsedPathCoords = JSON.parse(driverPathFromStorage);
+            cb(parsedPathCoords);
+        })();
     }
 
     componentDidMount() {
-
-        this
-        .getDriverPathFromStorage()
-        .then(driverPathFromStorage => this.coordinateDataFetch(driverPathFromStorage));
+        this.getDriverPathFromStorage(this.coordinateDataFetch);
     };
 
     componentDidUpdate() {
-        this
-        .getDriverPathFromStorage()
-        .then(driverPathFromStorage => {
-            driverPathFromStorage && this.setCoordsToMainPath(driverPathFromStorage);
-        })
+        this.getDriverPathFromStorage(this.setCoordsToMainPath);
     }
 
     componentWillUnmount() {
