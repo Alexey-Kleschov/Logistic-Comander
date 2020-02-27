@@ -4,6 +4,7 @@ import { Text } from 'react-native';
 import { AnimatedRegion } from 'react-native-maps'
 import haversine from 'haversine';
 import polyline from '@mapbox/polyline';
+import { AsyncStorage } from 'react-native';
 
 const options = { 
     enableHighAccuracy: true, 
@@ -68,6 +69,42 @@ class MapContainer extends PureComponent {
         console.log(err.code, err.message);
     }
 
+    setDriverPath = (start, finish) => {
+        this.fetchRoad(start, finish)
+        .then(driverLeadCoords => this.setState({coords: driverLeadCoords}));
+    }
+
+    getInitialLocation = () => {
+        navigator.geolocation.getCurrentPosition(this.initial_geoResolve, this.geoReject, options);
+    }
+
+    watchDriverMovement = () => {
+        this.watchId = navigator.geolocation.watchPosition(this.geoResolve, this.geoReject, options);
+    }
+
+    setCoordsToMainPath = (driverPathFromStorage) => {
+        if (driverPathFromStorage) {
+            const { initialGpsData, coordsToPath } = this.state;
+
+            if(initialGpsData && coordsToPath.length === 0) {
+                this
+                .fetchRoad(initialGpsData, driverPathFromStorage.start)
+                .then(leadToMainPath => this.setState({coordsToPath: leadToMainPath}));
+            }
+        }
+    }
+
+    coordinateDataFetch = (driverPathFromStorage) => {
+        if (driverPathFromStorage) {
+            const { start, finish } = driverPathFromStorage;
+
+            this.setDriverPath(start, finish)
+            this.getInitialLocation()
+        }
+
+        this.watchDriverMovement()
+    }
+
     async fetchRoad(start, finish) {
         const APIKEY = 'AIzaSyCOE23d0Sf1mfSLT43SOlLpLRzpBhhSH7A';
         const url = `https://maps.googleapis.com/maps/api/directions/json?origin=${start}&destination=${finish}&key=${APIKEY}`;
@@ -87,28 +124,20 @@ class MapContainer extends PureComponent {
         }
     }
 
+    getDriverPathFromStorage = (cb) => {
+        (async() => {
+            const driverPathFromStorage = await AsyncStorage.getItem('driverPath');
+            const parsedPathCoords = JSON.parse(driverPathFromStorage);
+            cb(parsedPathCoords);
+        })();
+    }
+
     componentDidMount() {
-        const { start, finish } = this.props.driverLeadCoords;
-
-        // Get driver path
-        this.fetchRoad(start, finish)
-        .then(driverLeadCoords => this.setState({coords: driverLeadCoords}));
-
-        // Get current driver location
-        navigator.geolocation.getCurrentPosition(this.initial_geoResolve, this.geoReject, options);
-
-        // Watch driver's movement
-        this.watchId = navigator.geolocation.watchPosition(this.geoResolve, this.geoReject, options);
+        this.getDriverPathFromStorage(this.coordinateDataFetch);
     };
 
     componentDidUpdate() {
-        // Get lead from current driver location to driver path
-        const { initialGpsData, coordsToPath } = this.state;
-        const { driverLeadCoords } = this.props;
-        if(initialGpsData && coordsToPath.length === 0) {
-            this.fetchRoad(initialGpsData, driverLeadCoords.start)
-            .then(leadToMainPath => this.setState({coordsToPath: leadToMainPath}));
-        }
+        this.getDriverPathFromStorage(this.setCoordsToMainPath);
     }
 
     componentWillUnmount() {
