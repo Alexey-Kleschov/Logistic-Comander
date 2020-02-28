@@ -11,7 +11,8 @@ const Profile = ({user, isVisible, onClose, onLogout}) => {
         },
         {
             avatar: 'wrench',
-            item: `${user.position[0]}`
+            // item: `${user.position[0]}`
+            item: ''
         },
         {
             avatar: 'envelope',

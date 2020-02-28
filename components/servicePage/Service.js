@@ -5,18 +5,21 @@ import {Button, Text} from "react-native-elements";
 import {connect} from "react-redux";
 import {setService} from "../../actions/serviceAction";
 
-let data = [{
-    value: 'Warehousing',
-}, {
-    value: 'Express Cargo',
-}];
+const data = [
+    {
+        value: 'Warehousing',
+    }, 
+    {
+        value: 'Express Cargo',
+    }
+];
 
 class Service extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            service: 'Warehousing',
+            service: '',
             isLogged: '',
             currentRole: ''
         };
@@ -34,11 +37,11 @@ class Service extends Component {
         this.props.setService(this.state.service)
     }
 
-    handleChangeService = () => {
-        this.setState((this.state.service === 'Warehousing' ? {service: 'Express Cargo'} : {service: 'Warehousing'}),this.handleSetService)
+    handleChangeService = (service) => {        
+        this.setState({ service }, this.handleSetService);
     }
 
-    nextPage = () => {
+    nextPage = () => {        
         this.props.navigation.navigate('Login')
     }
 
@@ -54,7 +57,7 @@ class Service extends Component {
                         textColor='#f5f5f5'
                         data={data}
                         onChangeText={this.handleChangeService}
-                        value={this.state.service}
+                        label='Select service'                        
                     />
                     <Button
                         containerStyle={styles.button}

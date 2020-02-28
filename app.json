@@ -28,7 +28,8 @@
       "versionCode": 1
     },
     "ios": {
-      "supportsTablet": true
+      "bundleIdentifier": "logisticComander.com",
+      "buildNumber": "1.0.0"
     },
     "entryPoint": "node_modules/expo/AppEntry.js"
   },
